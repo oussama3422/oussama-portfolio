@@ -18,11 +18,12 @@ const ContactSection = styled.section`
 
   @media (max-width: 768px) {
     padding: 1rem;
+    margin: 2rem; /* Center the section */
   }
 `;
 
 const InputField = styled.input`
-  width: 100%;
+  width: 95%;
   padding: 12px;
   margin-bottom: 1rem;
   border: none;
@@ -42,7 +43,7 @@ const InputField = styled.input`
 `;
 
 const TextArea = styled.textarea`
-  width: 100%;
+  width: 95%;
   padding: 12px;
   margin-bottom: 1rem;
   border: none;
@@ -82,12 +83,12 @@ const SubmitButton = styled.button`
     left: -100%; /* Start off-screen */
     width: 100%;
     height: 100%;
-    background-color: #8aa51d; /* Green color */
     transition: left 0.3s ease; /* Animate the movement */
   }
-  &:hover::before {
+  &:hover {
     left: 0; /* Move into view */
     color: white;
+    background-color: #60615bff; /* Green color */
   }
 
   &:active {
