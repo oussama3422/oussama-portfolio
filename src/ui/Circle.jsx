@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Profile from '../assets/images/profile.png';
+
+
+
 // Styled components
 const Container = styled.div`
   display: flex; /* Align items in a row */

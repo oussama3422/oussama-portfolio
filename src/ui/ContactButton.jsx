@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   position: fixed;
-  left: 8px; // Change from right to left
+  left: 8px;
   bottom: 30%;
   display: flex;
   align-items: center;
@@ -33,12 +33,8 @@ const Button = styled.button`
   }
 `;
 
-const ContactButton = () => {
-  const handleClick = () => {
-    alert("Contact Me Clicked!");
-  };
-
-  return <Button onClick={handleClick}>Contact Me</Button>;
+const ContactButton = ({ onClick }) => {
+  return <Button onClick={onClick}>Contact Me</Button>;
 };
 
 export default ContactButton;

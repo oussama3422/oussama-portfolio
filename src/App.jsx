@@ -8,8 +8,11 @@ import Services from "./components/Services";
 import PortfolioTitle from "./ui/PortfolioTitle";
 import ContactButton from "./ui/ContactButton";
 import Contact from "./components/Contact";
+import { useRef } from "react";
 
 const App = () => {
+  const contactRef = useRef(null); // Create a ref for the Contact section
+
   return (
     <AppLayout>
       <Routes>
@@ -21,13 +24,17 @@ const App = () => {
               <Services />
               <PortfolioTitle />
               <Portfolio />
-              <Contact/>
+              <Contact ref={contactRef} />
             </>
           }
         />
         <Route path="/project/:name" element={<ProjectDetail />} />
       </Routes>
-      <ContactButton/>
+      <ContactButton
+        onClick={() =>
+          contactRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+      />
       <Footer />
     </AppLayout>
   );

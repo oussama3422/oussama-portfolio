@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import styled from "styled-components";
-import emailjs from "emailjs-com"; // Import EmailJS
 
 const ContactSection = styled.section`
   max-width: 600px; /* Set a maximum width */
@@ -96,50 +95,16 @@ const SubmitButton = styled.button`
   }
 `;
 
-// Your existing styled components go here...
-
-const Contact = () => {
+// eslint-disable-next-line react/display-name
+const Contact = forwardRef((props, ref) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const templateParams = {
-      name: name,
-      email: email,
-      message: message,
-    };
-
-    emailjs
-      .send(
-        "service_3bmhk7k",
-        "template_8kyfqb6",
-        templateParams,
-        "FyedPO93ROAPn1m2Q"
-      )
-      .then(
-        (response) => {
-          console.log(
-            "Email sent successfully!",
-            response.status,
-            response.text
-          );
-          setStatus("Message sent successfully!");
-        },
-        (error) => {
-          console.error("Failed to send email:", error);
-          setStatus("Failed to send message.");
-        }
-      );
-  };
 
   return (
-    <ContactSection>
+    <ContactSection ref={ref}>
       <h2>GET IN TOUCH</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={() => {}}>
         <InputField
           type="text"
           placeholder="Your Name"
@@ -162,9 +127,8 @@ const Contact = () => {
         ></TextArea>
         <SubmitButton type="submit">SEND A MESSAGE</SubmitButton>
       </form>
-      {status && <p>{status}</p>}
     </ContactSection>
   );
-};
+});
 
 export default Contact;

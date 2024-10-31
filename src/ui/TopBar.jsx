@@ -74,9 +74,7 @@ function AppBar() {
   return (
     <TopBar>
       <ButtonContainer>
-        <Button href="https://www.linkedin.com/in/oussama-ghayghay-608907207/">
-          FREE CONSULTATION
-        </Button>
+        <Button href="https://wa.me/+212659158079">FREE CONSULTATION</Button>
         <Email href="mailto:oussamaazubi@gmail.com">
           OUSSAMAAZUBI@GMAIL.COM
         </Email>

@@ -2,8 +2,11 @@ import styled from "styled-components";
 import SocialMediaLinks from "../ui/SocialMediaIcons";
 import AppBar from "../ui/TopBar";
 import { Description } from "../ui/Globals";
-import Profile from '../assets/images/profile.png'
-const HeaderContainer = styled.header`
+import Profile from "../assets/images/profile.png";
+import { motion } from "framer-motion";
+
+const HeaderContainer = styled(motion.header)`
+  // Convert header to motion component
   background-color: #1d1d1d;
   color: white;
   padding: 20px;
@@ -59,6 +62,7 @@ const ProfileCard = styled.div`
   max-width: 600px; /* Optional: maximum width */
   margin: 0 auto; /* Center the card */
 `;
+
 const SecondCard = styled.div`
   border: none; /* Remove border from this specific profile card */
   border-radius: 10px;
@@ -71,24 +75,31 @@ const SecondCard = styled.div`
   max-width: 600px; /* Optional: maximum width */
   margin: 0 auto; /* Center the card */
 `;
+
 const RowCard = styled.div`
   display: flex;
   flex-direction: row; /* Row by default */
   gap: 20px;
   margin-top: 45px;
+
   @media (max-width: 768px) {
     flex-direction: column; /* Column layout on small screens */
     align-items: center; /* Center items in column layout */
   }
 `;
 
-const ProfileImage = styled.img`
+const ProfileImage = styled(motion.img)`
   width: 100%;
   max-width: 200px;
   height: auto;
   border-radius: 10%;
   border: none;
   margin-bottom: 20px;
+
+  &:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    transition: transform 0.3s ease; /* Smooth transition for hover */
+  }
 `;
 
 const WorkType = styled.p`
@@ -101,9 +112,26 @@ const Experience = styled.h3`
   text-align: center;
 `;
 
+// Define the animation for the header
+const headerAnimation = {
+  initial: {
+    opacity: 0,
+    y: -50, // Start slightly above
+  },
+  animate: {
+    opacity: 1,
+    y: 0, // End at its original position
+    transition: {
+      duration: 0.5,
+      type: "spring", // Use spring for a bouncy effect
+      stiffness: 100,
+    },
+  },
+};
+
 const Header = () => {
   return (
-    <HeaderContainer>
+    <HeaderContainer {...headerAnimation}>
       <AppBar />
       <ProfileCardsContainer>
         <ProfileCard>
@@ -114,11 +142,11 @@ const Header = () => {
         </ProfileCard>
         <SecondCard>
           <Description>
-            Hello, I’m{" "}
+            Hello, I’m
             <span style={{ color: "#8aa51d", fontSize: "44px" }}>
-              Oussama Rhayrhay{" "}
+              Oussama Rhayrhay
             </span>
-            , Full Stack Developer.
+            , Software Developer.
           </Description>
           <RowCard>
             <Experience>
