@@ -150,7 +150,7 @@ const Header = () => {
           </Description>
           <RowCard>
             <Experience>
-              <span style={{ color: "#8aa51d", fontSize: "30px" }}>3 </span>
+              <span style={{ color: "#8aa51d", fontSize: "30px" }}>2 </span>
               Years of Experience
             </Experience>
             <ButtonCard href="mailto:hamza.hamani@example.com">

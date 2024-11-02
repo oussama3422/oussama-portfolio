@@ -25,7 +25,7 @@ const ProjectDetail = () => {
   }, []);
 
   if (loading) {
-    return <Loading />; // Render the loading component while loading
+    return <Loading />; 
   }
   const project = projects.find(
     (proj) => proj.name === decodeURIComponent(name)

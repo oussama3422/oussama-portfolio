@@ -10,7 +10,7 @@ const Services = () => {
       <CardContainer>
         <CustomCard
           imageSrc={FirstImg}
-          title="WEB DEVELOPMENT"
+          title="WEB AND APP DEVELOPMENT"
           description="Offering top-notch web development services tailored to your needs. Let's bring your digital vision to life."
         />
         <CustomCard

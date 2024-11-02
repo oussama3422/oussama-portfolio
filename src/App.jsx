@@ -10,6 +10,7 @@ import ContactButton from "./ui/ContactButton";
 import Contact from "./components/Contact";
 import { useEffect, useRef, useState } from "react";
 import Loading from "./components/Loading";
+import MouseFollower from "./ui/MouseMotion";
 const App = () => {
   const contactRef = useRef(null); // Create a ref for the Contact section
   const [loading, setLoading] = useState(true); // State to manage loading
@@ -29,6 +30,7 @@ const App = () => {
 
   return (
     <AppLayout>
+      <MouseFollower />
       <Routes>
         <Route
           path="/"
