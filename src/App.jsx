@@ -7,52 +7,58 @@ import ProjectDetail from "./components/ProjectDetail";
 import Services from "./components/Services";
 import PortfolioTitle from "./ui/PortfolioTitle";
 import ContactButton from "./ui/ContactButton";
-import Contact from "./components/Contact";
 import { useEffect, useRef, useState } from "react";
 import Loading from "./components/Loading";
 import MouseFollower from "./ui/MouseMotion";
+import ContactSection from "./components/Contact";
+// import { LanguageProvider } from "./context/LanguageContext";
+import { LanguageProvider } from "./context/LanguageContext";
+// import GlobalStyle from "./assets/GlobalStyle";
 const App = () => {
   const contactRef = useRef(null); // Create a ref for the Contact section
   const [loading, setLoading] = useState(true); // State to manage loading
+  const [color, setColor] = useState("#ffffff"); // Default loader color
 
+  // Simulate loading duration
   useEffect(() => {
-    // Simulate loading time with a timeout
     const timer = setTimeout(() => {
-      setLoading(false); // Set loading to false after 2 seconds
-    }, 2000); // Adjust the time as needed
-
-    return () => clearTimeout(timer); // Cleanup the timer
+      setLoading(false); // Simulate loading finished after 3 seconds
+    }, 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
-    return <Loading />; // Render the loading component while loading
+    return <Loading color={color} loading={loading} />; // Render the loading component while loading
   }
 
   return (
-    <AppLayout>
-      <MouseFollower />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Services />
-              <PortfolioTitle />
-              <Portfolio />
-              <Contact ref={contactRef} />
-            </>
+    <LanguageProvider>
+      <AppLayout>
+        <MouseFollower />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Services />
+                <PortfolioTitle />
+                <Portfolio />
+                <ContactSection ref={contactRef} />
+              </>
+            }
+          />
+          <Route path="/project/:name" element={<ProjectDetail />} />
+        </Routes>
+        <ContactButton
+          onClick={() =>
+            contactRef.current.scrollIntoView({ behavior: "smooth" })
           }
         />
-        <Route path="/project/:name" element={<ProjectDetail />} />
-      </Routes>
-      <ContactButton
-        onClick={() =>
-          contactRef.current.scrollIntoView({ behavior: "smooth" })
-        }
-      />
-      <Footer />
-    </AppLayout>
+
+        <Footer />
+      </AppLayout>
+    </LanguageProvider>
   );
 };
 

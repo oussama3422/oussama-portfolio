@@ -62,6 +62,22 @@ export const projects = [
     image: creaskale,
     images: [],
   },
+  {
+    name: "Creaskale",
+    categories: "Mobile Development",
+    githubLink: null,
+    description: "Creaskale is an innovative mobile solution.",
+    websiteLink: null,
+    toolsAndTechnologies: [
+      "FLUTTER",
+      "DART",
+      "BLOC",
+      "FIREBASE",
+      "STATE MANAGEMENT",
+    ],
+    image: creaskale,
+    images: [],
+  },
   // {
   //   name: "BookEase",
   //   categories: "Front-End Development",

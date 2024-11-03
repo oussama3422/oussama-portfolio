@@ -10,12 +10,16 @@ const GlobalStyle = createGlobalStyle`
 
   /* styles.css */  
 body {  
-  margin: 0;  
-  padding: 0;  
-  height: 100vh; /* Full height */  
-  background-color: #f0f0f0; /* Light background color */  
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;  
+  height: 100vh; // Full height of the viewport  
+  background-color: #333; // Optional: Light background color for loading screen  
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px);  
-  background-size: 40px 100%; /* Width of the lines and height */  
+  background-size: 40px 100%; // Width of the lines and height  
+  color: black; // Text color, changed to black for visibility against lighter background  
+  font-size: 36px; // Increased font size for loading text  
 }  
 
 .container {  

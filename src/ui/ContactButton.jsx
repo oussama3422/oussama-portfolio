@@ -16,7 +16,8 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: transparent; /* Transparent background */
+  color: white;
   padding: 20px 10px;
   border: 2px solid #aaacae;
   border-radius: 5px;
@@ -28,7 +29,17 @@ const Button = styled.button`
   transform: rotate(90deg);
   transform-origin: left bottom;
   margin-bottom: 80px;
+  /* &:hover {
+    transform: translateY(-5px) rotate(90deg);
+  } */
+
+  min-height: 20px; /* Set minimum height for uniformity */
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
   &:hover {
+    background-color: white; /* Change the background on hover */
+    color: black; /* Change text color to black on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
     transform: translateY(-5px) rotate(90deg);
   }
 `;
