@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Portfolio from "./components/Portfolio";
 import Header from "./components/Header"; // Add your header component
 import Footer from "./components/Footer"; // Add your footer component
@@ -18,6 +18,7 @@ const App = () => {
   const contactRef = useRef(null); // Create a ref for the Contact section
   const [loading, setLoading] = useState(true); // State to manage loading
   const [color, setColor] = useState("#ffffff"); // Default loader color
+  const location = useLocation(); // Get the current location  
 
   // Simulate loading duration
   useEffect(() => {
@@ -50,11 +51,14 @@ const App = () => {
           />
           <Route path="/project/:name" element={<ProjectDetail />} />
         </Routes>
-        <ContactButton
-          onClick={() =>
-            contactRef.current.scrollIntoView({ behavior: "smooth" })
-          }
-        />
+        {/* Conditionally render the ContactButton */}  
+        {location.pathname !== "/project/:name" && (  
+          <ContactButton  
+            onClick={() =>  
+              contactRef.current.scrollIntoView({ behavior: "smooth" })  
+            }  
+          />  
+        )}  
 
         <Footer />
       </AppLayout>

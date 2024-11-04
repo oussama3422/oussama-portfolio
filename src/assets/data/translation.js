@@ -4,6 +4,7 @@ const translations = {
     name: "Oussama Rhayrhay",
     workType: "AVAILABLE FOR WORK",
     footerText: "Thank you for visiting!",
+
     // Add services translations
     contactHeading: "Get In Touch", // Added translation for contact heading
     contactSubheading: "Let us make your brand brilliant!", // Added translation
@@ -38,17 +39,17 @@ const translations = {
     actionableInsights: "Actionable Insights", // Added for the actionable insights
     // Project Translations
     projects: {
-      getDPizza: {
+      GetDPizza: {
         description:
           "PizzaPortal is a web application that allows users to order pizza online. The project is built using React, React Router v6.4, Tailwind CSS for styling, Local Storage for user login, Redux Toolkit for state management, and Framer Motion for small animations.",
         categories: "Front End",
       },
-      bookWelt: {
+      BookWelt: {
         description:
           "Book Welt is an admin dashboard designed for efficient management of booking data and statistical analysis through clean and intuitive charts. Built using React, React Query, Toasts, Recharts, and Styled Components, this dashboard provides a seamless experience for employees to monitor various stats and handle bookings effortlessly.",
         categories: "Full Stack Development",
       },
-      creaskale: {
+      Creaskale: {
         description: "Creaskale is an innovative mobile solution.",
         categories: "Mobile Development",
       },
@@ -78,7 +79,7 @@ const translations = {
     placeholderMessage: "Message",
 
     // footer
-    rightsReserved: "All rights reserved.", // English translation  
+    rightsReserved: "All rights reserved.", // English translation
   },
   de: {
     name: "Oussama Rhayrhay",
@@ -120,19 +121,19 @@ const translations = {
 
     // Project Translations
     projects: {
-      getDPizza: {
+      GetDPizza: {
         description:
-          "PizzaPortal is a web application that allows users to order pizza online. The project is built using React, React Router v6.4, Tailwind CSS for styling, Local Storage for user login, Redux Toolkit for state management, and Framer Motion for small animations.",
-        categories: "Front End",
+          "PizzaPortal ist eine Webanwendung, mit der Benutzer Pizza online bestellen können. Das Projekt wurde mit React, React Router v6.4, Tailwind CSS für das Styling, Local Storage für den Benutzer-Login, Redux Toolkit für das Statusmanagement und Framer Motion für kleine Animationen erstellt.",
+        categories: "Front-End",
       },
-      bookWelt: {
+      BookWelt: {
         description:
-          "Book Welt is an admin dashboard designed for efficient management of booking data and statistical analysis through clean and intuitive charts. Built using React, React Query, Toasts, Recharts, and Styled Components, this dashboard provides a seamless experience for employees to monitor various stats and handle bookings effortlessly.",
-        categories: "Full Stack Development",
+          "Book Welt ist ein Admin-Dashboard, das für eine effiziente Verwaltung von Buchungsdaten und statistischen Analysen durch saubere und intuitive Diagramme konzipiert wurde. Dieses Dashboard wurde mit React, React Query, Toasts, Recharts und Styled Components erstellt und bietet den Mitarbeitern eine nahtlose Erfahrung, um verschiedene Statistiken zu überwachen und Buchungen mühelos zu verwalten.",
+        categories: "Full Stack Entwicklung",
       },
-      creaskale: {
-        description: "Creaskale is an innovative mobile solution.",
-        categories: "Mobile Development",
+      Creaskale: {
+        description: "Creaskale ist eine innovative mobile Lösung.",
+        categories: "Mobile Entwicklung",
       },
     },
 
@@ -166,7 +167,6 @@ const translations = {
     placeholderEmail: "E-Mail",
     placeholderSubject: "Betreff",
     placeholderMessage: "Nachricht",
-
 
     //footer
     rightsReserved: "Alle Rechte vorbehalten.",

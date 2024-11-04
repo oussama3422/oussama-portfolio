@@ -8,14 +8,16 @@ import {
   IoReturnDownForward,
 } from "react-icons/io5";
 import { projects } from "../assets/data/projects";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import Loading from "./Loading";
 import { useEffect, useState } from "react";
-
+import { useLanguage } from "../context/LanguageContext";
 const ProjectDetail = () => {
   const [loading, setLoading] = useState(true); // State to manage loading
   const { name } = useParams();
+  const { language, translations } = useLanguage(); // Get current language and translations
 
+  // Simulating loading time
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -25,8 +27,9 @@ const ProjectDetail = () => {
   }, []);
 
   if (loading) {
-    return <Loading />; 
+    return <Loading />;
   }
+
   const project = projects.find(
     (proj) => proj.name === decodeURIComponent(name)
   );
@@ -35,23 +38,24 @@ const ProjectDetail = () => {
     return <Container>Project not found.</Container>;
   }
 
-  const {
-    description,
-    categories,
-    githubLink,
-    websiteLink,
-    image,
-    images,
-    toolsAndTechnologies,
-  } = project;
+  const projectKey = project.name;  
+
+  // Get the translation for the current language  
+  const projectTranslation = translations[language]?.projects[projectKey];  
+  
+  // Handle case where translation might not exist  
+  const description = projectTranslation?.description || "Description not available.";  
+  const categoriesTranslated = projectTranslation?.categories || "Category not specified.";  
+
+  const {  
+    githubLink,  
+    image,  
+    toolsAndTechnologies,  
+    images,  
+  } = project;  
 
   return (
-    <Container
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <Container>
       <LogoContainer>
         <Logo />
       </LogoContainer>
@@ -80,7 +84,7 @@ const ProjectDetail = () => {
             </Icon>
             <DetailContent>
               <DetailTitle>Categories:</DetailTitle>
-              <DetailText>{categories}</DetailText>
+              <DetailText>{categoriesTranslated}</DetailText>
             </DetailContent>
           </DetailItem>
           <DetailItem>
@@ -90,7 +94,7 @@ const ProjectDetail = () => {
             <DetailContent>
               <DetailTitle>Source Code:</DetailTitle>
               <DetailText>
-                {githubLink !== null ? (
+                {githubLink ? (
                   <GitHubLink
                     href={githubLink}
                     target="_blank"
@@ -111,13 +115,13 @@ const ProjectDetail = () => {
             <DetailContent>
               <DetailTitle>Website:</DetailTitle>
               <DetailText>
-                {websiteLink ? (
+                {project.websiteLink ? (
                   <SiteLink
-                    href={websiteLink}
+                    href={project.websiteLink}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {websiteLink}
+                    {project.websiteLink}
                   </SiteLink>
                 ) : (
                   "Private Project"
@@ -131,13 +135,9 @@ const ProjectDetail = () => {
         <ImagesContainer>
           {images.map((img, index) => (
             <ImageItem
-              as={motion.img}
               key={index}
               src={img}
               alt={`Project image ${index + 1}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }} // Delay for staggered effect
             />
           ))}
         </ImagesContainer>
