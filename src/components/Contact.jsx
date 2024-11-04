@@ -135,9 +135,11 @@
 
 import { forwardRef, useState } from "react";
 import styled from "styled-components";
+import { useLanguage } from "../context/LanguageContext"; // Import useLanguage
 
 // eslint-disable-next-line react/display-name
 const Contact = forwardRef((_props, ref) => {
+  const { language, translations } = useLanguage(); // Get current language and translations
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -147,133 +149,159 @@ const Contact = forwardRef((_props, ref) => {
     <Section ref={ref}>
       <ContentWrapper>
         <TextContent>
-          <h2>Get In Touch</h2>
-          <p>Let us make your brand brilliant!</p>
-          <p>
-            If you would like to work with me or just want to get in touch, we’d
-            love to hear from you!
-          </p>
-
+          <h2>{translations[language].contactHeading}</h2>
+          <p>{translations[language].contactSubheading}</p>
+          <p>{translations[language].contactDescription}</p>
           <SocialLinks>
-            <a href="https://github.com" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
             <a
-              href="https://wa.me/your-number"
+              href="https://github.com/oussama3422"
               target="_blank"
               rel="noreferrer"
             >
-              WhatsApp
+              {translations[language].githubLink}
             </a>
             <a
-              href="https://linkedin.com/in/your-profile"
+              href="https://wa.me/+212659158079"
               target="_blank"
               rel="noreferrer"
             >
-              LinkedIn
+              {translations[language].whatsappLink}
+            </a>
+            <a
+              href="https://www.linkedin.com/in/oussama-ghayghay-608907207/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {translations[language].linkedinLink}
             </a>
           </SocialLinks>
         </TextContent>
 
-        <Form onClick={() => {}}>
-          <Input type="text" placeholder="Name" value={name} required />
-          <Input type="email" placeholder="Email" value={email} required />
-          <Input type="text" placeholder="Subject" value={subject} required />
-          <Textarea placeholder="Message" required value={message} />
-          <Button type="submit">Send A Message</Button>
+        <Form>
+          <Input
+            type="text"
+            placeholder={translations[language].placeholderName} // Use translated placeholder
+            value={name}
+            onChange={(e) => setName(e.target.value)} // Handle state update
+            required
+          />
+          <Input
+            type="email"
+            placeholder={translations[language].placeholderEmail} // Use translated placeholder
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // Handle state update
+            required
+          />
+          <Input
+            type="text"
+            placeholder={translations[language].placeholderSubject} // Use translated placeholder
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)} // Handle state update
+            required
+          />
+          <Textarea
+            placeholder={translations[language].placeholderMessage} // Use translated placeholder
+            required
+            value={message}
+            onChange={(e) => setMessage(e.target.value)} // Handle state update
+          />
+          <Button type="submit">
+            {translations[language].buttonSendMessage}
+          </Button>
         </Form>
       </ContentWrapper>
     </Section>
   );
 });
-
 // Styled Components
 const Section = styled.section`
-  background: transparent; /* Fully transparent background */
+  background: transparent;
   color: #ffffff;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
   max-width: 800px;
   margin: auto;
-  text-align: center; /* Centering text initially */
+  text-align: center;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column; /* Default to column layout */
-  align-items: center;
+  flex-direction: column;
 
   @media (min-width: 768px) {
-    flex-direction: row; /* Row layout on larger screens */
+    flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
   }
 `;
 
 const TextContent = styled.div`
   flex: 1;
-  margin-right: 20px; /* Space between text and form */
+  margin-right: 20px;
+  text-align: start;
 
-  /* Enhanced text styles */
   h2 {
     font-size: 2em;
     margin-bottom: 10px;
-    color: #5c5b56; /* Golden color for the heading */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+    color: #5c5b56;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }
 
-  p {
-    font-size: 1.1em;
-    line-height: 1.5;
+  p:nth-of-type(1) {
+    font-size: 4em;
+    color: #ffffff;
     margin: 10px 0;
   }
 
-  a {
-    font-size: 1em;
-    color: #908f8d; /* Golden color for links */
-    text-decoration: none;
-    transition: color 0.3s ease;
-    margin:0px 10px;
-    &:hover {
-      color: #ffffff; /* Change color on hover */
-    }
+  p:nth-of-type(2) {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin: 10px 0;
   }
 `;
 
 const SocialLinks = styled.div`
   margin: 20px 0;
+
+  a {
+    font-size: 1em;
+    color: #908f8d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin: 0 10px;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  flex: 1; /* Allow form to fill available space */
+  flex: 1;
 `;
 
 const Input = styled.input`
+  width: 100%;
   margin: 10px 0;
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Slightly opaque background for inputs */
+  border: 1px solid white;
+  background-color: transparent;
 `;
 
 const Textarea = styled.textarea`
+  width: 100%;
   margin: 10px 0;
+  height: 150px;
   padding: 10px;
   border: none;
+  border: 1px solid white;
   border-radius: 5px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Slightly opaque background for textarea */
+  background-color: transparent;
 `;
 
 const Button = styled.button`
@@ -286,7 +314,7 @@ const Button = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #7b9413; /* Slightly darker on hover */
+    background-color: #7b9413;
   }
 `;
 

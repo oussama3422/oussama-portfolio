@@ -36,16 +36,6 @@ export const projects = [
     image: bookWelt,
     images: [bookWelt1, bookWelt2, bookWelt3, bookWelt4],
   },
-  // {
-  //   name: "BookEase",
-  //   categories: "Front-End Development",
-  //   githubLink: "https//www.example.com",
-  //   description: "Omnifood is a platform for food delivery services.",
-  //   websiteLink: "https://book-welt-fu1wl7y3a-oussama3422s-projects.vercel.app/",
-  //   toolsAndTechnologies: ["HTML", "CSS", "JAVASCRIPT"],
-  //   image: bookWelt,
-  //   images: [bookWelt, bookWelt],
-  // },
   {
     name: "Creaskale",
     categories: "Mobile Development",
@@ -78,14 +68,4 @@ export const projects = [
     image: creaskale,
     images: [],
   },
-  // {
-  //   name: "BookEase",
-  //   categories: "Front-End Development",
-  //   githubLink: "https//www.example.com",
-  //   description: "GarageApp helps manage car repairs effectively.",
-  //   websiteLink: "https://book-welt-fu1wl7y3a-oussama3422s-projects.vercel.app/",
-  //   toolsAndTechnologies: ["HTML", "CSS", "JAVASCRIPT"],
-  //   image: bookWelt,
-  //   images: [bookWelt, bookWelt],
-  // },
 ];

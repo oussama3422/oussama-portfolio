@@ -1,30 +1,37 @@
-import { createContext, useContext, useState } from "react";
-import translations from "../assets/data/translation"; // Ensure the path is correct
+import { createContext, useContext, useEffect, useState } from "react";  
+import translations from "../assets/data/translation"; // Ensure the path is correct  
 
-const LanguageContext = createContext();
+const LanguageContext = createContext();  
 
-function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState("en");
+function LanguageProvider({ children }) {  
+  // Check localStorage for saved language preference  
+  const savedLanguage = localStorage.getItem("language") || "en";  
+  const [language, setLanguage] = useState(savedLanguage);  
 
-  const switchLanguage = (lang) => {
-    setLanguage(lang);
-  };
+  useEffect(() => {  
+    // Save the current language to localStorage whenever it changes  
+    localStorage.setItem("language", language);  
+  }, [language]);  
 
-  return (
-    <LanguageContext.Provider
-      value={{ language, switchLanguage, translations }}
-    >
-      {children}
-    </LanguageContext.Provider>
-  );
-}
+  const switchLanguage = (lang) => {  
+    setLanguage(lang);  
+  };  
 
-function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
-}
+  return (  
+    <LanguageContext.Provider  
+      value={{ language, switchLanguage, translations }}  
+    >  
+      {children}  
+    </LanguageContext.Provider>  
+  );  
+}  
+
+function useLanguage() {  
+  const context = useContext(LanguageContext);  
+  if (context === undefined) {  
+    throw new Error("useLanguage must be used within a LanguageProvider");  
+  }  
+  return context;  
+}  
 
 export { LanguageProvider, useLanguage };

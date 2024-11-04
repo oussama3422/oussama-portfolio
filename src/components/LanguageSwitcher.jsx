@@ -14,38 +14,42 @@ const LanguageButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  margin: 0 5px; // Space between buttons
-  transition: transform 0.3s ease; // Smooth transform transition
-
+  margin: 0 5px;
+  transition: transform 0.3s ease;
   &:hover {
-    transform: scale(1.1); // Scale up on hover for effect
+    transform: scale(1.1);
   }
 `;
 
 const StyledImage = styled.img`
-  width: 24px; // Set the desired width
-  height: auto; // Maintain aspect ratio
-  transition: opacity 0.3s ease, transform 0.3s ease; // Smooth transition effects
+  width: 24px;
+  height: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    opacity: 0.8; // Slightly fade the image on hover
-    transform: translateY(-2px); // Lift effect on hover
+    opacity: 0.8;
+    transform: translateY(-2px);
   }
 `;
 
 const LanguageSwitcher = () => {
-  const { switchLanguage } = useLanguage(); // Access switchLanguage function from context
+  const { language, switchLanguage } = useLanguage(); 
 
   return (
     <SwitcherContainer>
-      <LanguageButton onClick={() => switchLanguage("en")}>
-        <StyledImage src={EN} alt="English" /> {/* English flag image */}
+      <LanguageButton
+        onClick={() => switchLanguage("en")}
+        disabled={language === "en"}
+      >
+        <StyledImage src={EN} alt="English" />
       </LanguageButton>
-      <LanguageButton onClick={() => switchLanguage("de")}>
-        <StyledImage src={GER} alt="German" /> {/* German flag image */}
+      <LanguageButton
+        onClick={() => switchLanguage("de")}
+        disabled={language === "de"}
+      >
+        <StyledImage src={GER} alt="German" />
       </LanguageButton>
     </SwitcherContainer>
   );
 };
-
 export default LanguageSwitcher;

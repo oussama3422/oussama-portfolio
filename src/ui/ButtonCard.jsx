@@ -10,7 +10,7 @@ export const ButtonCard = styled.a`
   text-align: center;
   justify-content: center;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.3s ease; /* Smooth transition for hover */
+  box-shadow 0.3s ease; /* Smooth transition for hover */
   min-height: 20px; /* Set minimum height for uniformity */
   box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
   &:hover {
