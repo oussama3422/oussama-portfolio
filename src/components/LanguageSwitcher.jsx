@@ -3,6 +3,7 @@ import styled from "styled-components";
 import GER from "../assets/images/GE.png"; // Ensure correct file extensions
 import EN from "../assets/images/en.png"; // Ensure correct file extensions
 import { useLanguage } from "../context/LanguageContext";
+import { useEffect } from "react";
 
 const SwitcherContainer = styled.div`
   display: flex;
@@ -33,7 +34,17 @@ const StyledImage = styled.img`
 `;
 
 const LanguageSwitcher = () => {
-  const { language, switchLanguage } = useLanguage(); 
+  const { language, switchLanguage } = useLanguage();
+
+  useEffect(
+    function () {
+      document.title =
+        language === "en"
+          ? "Oussama | Software Developer"
+          : "Oussama | SoftwareEntwicklung"; // Set desired title here
+    },
+    [language]
+  );
 
   return (
     <SwitcherContainer>

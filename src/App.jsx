@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Portfolio from "./components/Portfolio";
 import Header from "./components/Header"; // Add your header component
 import Footer from "./components/Footer"; // Add your footer component
@@ -11,14 +11,12 @@ import { useEffect, useRef, useState } from "react";
 import Loading from "./components/Loading";
 import MouseFollower from "./ui/MouseMotion";
 import ContactSection from "./components/Contact";
-// import { LanguageProvider } from "./context/LanguageContext";
 import { LanguageProvider } from "./context/LanguageContext";
 // import GlobalStyle from "./assets/GlobalStyle";
 const App = () => {
   const contactRef = useRef(null); // Create a ref for the Contact section
   const [loading, setLoading] = useState(true); // State to manage loading
   const [color, setColor] = useState("#ffffff"); // Default loader color
-  const location = useLocation(); // Get the current location  
 
   // Simulate loading duration
   useEffect(() => {
@@ -51,14 +49,11 @@ const App = () => {
           />
           <Route path="/project/:name" element={<ProjectDetail />} />
         </Routes>
-        {/* Conditionally render the ContactButton */}  
-        {location.pathname !== "/project/:name" && (  
-          <ContactButton  
-            onClick={() =>  
-              contactRef.current.scrollIntoView({ behavior: "smooth" })  
-            }  
-          />  
-        )}  
+        <ContactButton
+          onClick={() =>
+            contactRef.current.scrollIntoView({ behavior: "smooth" })
+          }
+        />
 
         <Footer />
       </AppLayout>
