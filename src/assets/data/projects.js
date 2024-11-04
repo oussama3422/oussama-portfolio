@@ -5,6 +5,9 @@ import bookWelt3 from "../images/3.png";
 import bookWelt4 from "../images/4.png";
 import pizza1 from "../images/5.png";
 import pizza2 from "../images/6.png";
+import RepairCar from "../images/repair-car.png";
+import Repair1 from "../images/repair1.png";
+import Repair2 from "../images/repair2.png";
 import creaskale from "../images/creaskale.png";
 export const projects = [
   {
@@ -53,11 +56,11 @@ export const projects = [
     images: [],
   },
   {
-    name: "Creaskale",
-    categories: "Mobile Development",
-    githubLink: null,
-    description: "Creaskale is an innovative mobile solution.",
-    websiteLink: null,
+    name: "RepairCar",
+    categories: "Mobile Development (Front End)",
+    githubLink: "",
+    description: "RepairCar is an app currently under development, with the front-end mobile version successfully completed.",
+    websiteLink: "Coming soon",
     toolsAndTechnologies: [
       "FLUTTER",
       "DART",
@@ -65,7 +68,7 @@ export const projects = [
       "FIREBASE",
       "STATE MANAGEMENT",
     ],
-    image: creaskale,
-    images: [],
+    image: RepairCar,
+    images: [Repair1, Repair2],
   },
 ];
