@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../ui/Logo";
 import { HiCodeBracket } from "react-icons/hi2";
@@ -38,21 +38,21 @@ const ProjectDetail = () => {
     return <Container>Project not found.</Container>;
   }
 
-  const projectKey = project.name;  
+  const projectKey = project.name;
 
-  // Get the translation for the current language  
-  const projectTranslation = translations[language]?.projects[projectKey];  
-  
-  // Handle case where translation might not exist  
-  const description = projectTranslation?.description || "Description not available.";  
-  const categoriesTranslated = projectTranslation?.categories || "Category not specified.";  
+  // Get the translation for the current language
+  const projectTranslation = translations[language]?.projects[projectKey];
 
-  const {  
-    githubLink,  
-    image,  
-    toolsAndTechnologies,  
-    images,  
-  } = project;  
+  // Handle case where translation might not exist
+  const description =
+    projectTranslation?.description || "Description not available.";
+  const categoriesTranslated =
+    projectTranslation?.categories || "Category not specified.";
+  const categoryTitle = translations[language]?.categoryTitle;
+  const sourceCodeTitle = translations[language]?.sourceCodeTitle;
+  const websiteTitle = translations[language]?.websiteTitle;
+
+  const { githubLink, image, toolsAndTechnologies, images } = project;
 
   return (
     <Container>
@@ -83,7 +83,7 @@ const ProjectDetail = () => {
               <IoListOutline />
             </Icon>
             <DetailContent>
-              <DetailTitle>Categories:</DetailTitle>
+              <DetailTitle>{categoryTitle}</DetailTitle>
               <DetailText>{categoriesTranslated}</DetailText>
             </DetailContent>
           </DetailItem>
@@ -92,7 +92,7 @@ const ProjectDetail = () => {
               <HiCodeBracket />
             </Icon>
             <DetailContent>
-              <DetailTitle>Source Code:</DetailTitle>
+              <DetailTitle>{sourceCodeTitle}</DetailTitle>
               <DetailText>
                 {githubLink ? (
                   <GitHubLink
@@ -113,7 +113,7 @@ const ProjectDetail = () => {
               <IoGlobeOutline />
             </Icon>
             <DetailContent>
-              <DetailTitle>Website:</DetailTitle>
+              <DetailTitle>{websiteTitle}</DetailTitle>
               <DetailText>
                 {project.websiteLink ? (
                   <SiteLink
@@ -239,9 +239,13 @@ const DetailText = styled.span`
   margin-top: 5px; /* Space between title and text */
 `;
 
-const GitHubLink = styled.a`
+const GitHubLink = styled(RouterLink)`
   color: #6f7376;
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline; /* Optional, adds underline on hover */
+  }
 `;
 
 const SiteLink = styled.a`

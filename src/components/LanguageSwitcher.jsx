@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import GER from "../assets/images/GE.png"; // Ensure correct file extensions
 import EN from "../assets/images/en.png"; // Ensure correct file extensions
+import FR from "../assets/images/france.png"; // Ensure correct file extensions
 import { useLanguage } from "../context/LanguageContext";
 import { useEffect } from "react";
 
@@ -59,6 +60,12 @@ const LanguageSwitcher = () => {
         disabled={language === "de"}
       >
         <StyledImage src={GER} alt="German" />
+      </LanguageButton>
+      <LanguageButton
+        onClick={() => switchLanguage("fr")}
+        disabled={language === "fr"}
+      >
+        <StyledImage src={FR} alt="French" />
       </LanguageButton>
     </SwitcherContainer>
   );

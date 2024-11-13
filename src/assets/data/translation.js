@@ -4,14 +4,11 @@ const translations = {
     name: "Oussama Rhayrhay",
     workType: "AVAILABLE FOR WORK",
     footerText: "Thank you for visiting!",
-
-    // Add services translations
-    contactHeading: "Get In Touch", // Added translation for contact heading
-    contactSubheading: "Let us make your brand brilliant!", // Added translation
+    contactHeading: "Get In Touch",
+    contactSubheading: "Let us make your brand brilliant!",
     contactDescription:
-      "If you would like to work with me or just want to get in touch, we’d love to hear from you!", // Added translation
-    buttonSendMessage: "Send A Message", // Added translation for button
-
+      "If you would like to work with me or just want to get in touch, we’d love to hear from you!",
+    buttonSendMessage: "Send A Message",
     services: {
       webDevTitle: "WEB AND APP DEVELOPMENT",
       webDevDescription:
@@ -30,14 +27,11 @@ const translations = {
     buttonContactMe: "CONTACT ME",
     yearsOfExperience: "Years of Experience",
     greeting: "Hello, I'm",
-    jobTitle: "Software Developer.", // Added translation for job title
-
-    // SERVICES
-    servicesHeading: "SERVICES", // Added for services heading
-    servicesDescription1: "Turn Information", // Added for the first line
-    servicesDescription2: "Into", // Added for the second line
-    actionableInsights: "Actionable Insights", // Added for the actionable insights
-    // Project Translations
+    jobTitle: "Software Developer.",
+    servicesHeading: "SERVICES",
+    servicesDescription1: "Turn Information",
+    servicesDescription2: "Into",
+    actionableInsights: "Actionable Insights",
     projects: {
       GetDPizza: {
         description:
@@ -54,8 +48,6 @@ const translations = {
         categories: "Mobile Development",
       },
     },
-
-    // Other Translations
     toolsAndTechnologies: {
       react: "React",
       reactRouter: "React Router",
@@ -72,27 +64,21 @@ const translations = {
       firebase: "Firebase",
       stateManagement: "State Management",
     },
-    // Add placeholders for the input fields
     placeholderName: "Name",
     placeholderEmail: "Email",
     placeholderSubject: "Subject",
     placeholderMessage: "Message",
-
-    // footer
-    rightsReserved: "All rights reserved.", // English translation
+    rightsReserved: "All rights reserved.",
   },
   de: {
     name: "Oussama Rhayrhay",
     workType: "VERFÜGBAR FÜR ARBEIT",
     footerText: "Danke für Ihren Besuch!",
-
-    contactHeading: "Nehmen Sie Kontakt auf", // Added translation for contact heading
-    contactSubheading: "Lassen Sie uns Ihre Marke strahlen!", // Added translation
+    contactHeading: "Nehmen Sie Kontakt auf",
+    contactSubheading: "Lassen Sie uns Ihre Marke strahlen!",
     contactDescription:
-      "Wenn Sie mit mir arbeiten möchten oder einfach nur in Kontakt treten möchten, würden wir uns freuen, von Ihnen zu hören!", // Added translation
-    buttonSendMessage: "Nachricht senden", // Added translation for button
-
-    // Add services translations
+      "Wenn Sie mit mir arbeiten möchten oder einfach nur in Kontakt treten möchten, würden wir uns freuen, von Ihnen zu hören!",
+    buttonSendMessage: "Nachricht senden",
     services: {
       webDevTitle: "WEB- UND APP-ENTWICKLUNG",
       webDevDescription:
@@ -111,24 +97,19 @@ const translations = {
     buttonContactMe: "KONTAKTIEREN SIE MICH",
     yearsOfExperience: "Jahre Erfahrung",
     greeting: "Hallo, ich bin",
-    jobTitle: "Softwareentwickler.", // Added translation for job title in German
-
-    // Service
-    servicesHeading: "DIENSTE", // Added for services heading in German
-    servicesDescription1: "Informationen umwandeln", // Added for the first line in German
-    servicesDescription2: "In", // Added for the second line in German
-    actionableInsights: "Handlungsorientierte Erkenntnisse", // Added for actionable insights in German
-
-    // Project Translations
+    jobTitle: "Softwareentwickler.",
+    servicesHeading: "DIENSTLEISTUNGEN",
+    servicesDescription1: "Informationen in",
+    servicesDescription2: "handlungsorientierte Erkenntnisse umwandeln",
     projects: {
       GetDPizza: {
         description:
-          "PizzaPortal ist eine Webanwendung, mit der Benutzer Pizza online bestellen können. Das Projekt wurde mit React, React Router v6.4, Tailwind CSS für das Styling, Local Storage für den Benutzer-Login, Redux Toolkit für das Statusmanagement und Framer Motion für kleine Animationen erstellt.",
-        categories: "Front-End",
+          "PizzaPortal ist eine Webanwendung, die es Benutzern ermöglicht, Pizza online zu bestellen. Das Projekt wurde mit React, React Router v6.4, Tailwind CSS für das Styling, Local Storage für die Benutzeranmeldung, Redux Toolkit für das State Management und Framer Motion für kleine Animationen erstellt.",
+        categories: "Frontend",
       },
       BookWelt: {
         description:
-          "Book Welt ist ein Admin-Dashboard, das für eine effiziente Verwaltung von Buchungsdaten und statistischen Analysen durch saubere und intuitive Diagramme konzipiert wurde. Dieses Dashboard wurde mit React, React Query, Toasts, Recharts und Styled Components erstellt und bietet den Mitarbeitern eine nahtlose Erfahrung, um verschiedene Statistiken zu überwachen und Buchungen mühelos zu verwalten.",
+          "Book Welt ist ein Admin-Dashboard, das für das effiziente Management von Buchungsdaten und die statistische Analyse durch saubere und intuitive Diagramme entwickelt wurde. Dieses Dashboard, das mit React, React Query, Toasts, Recharts und Styled Components erstellt wurde, bietet den Mitarbeitern ein nahtloses Erlebnis bei der Überwachung verschiedener Statistiken und der einfachen Verwaltung von Buchungen.",
         categories: "Full Stack Entwicklung",
       },
       Creaskale: {
@@ -136,8 +117,6 @@ const translations = {
         categories: "Mobile Entwicklung",
       },
     },
-
-    // Other Translations
     toolsAndTechnologies: {
       react: "React",
       reactRouter: "React Router",
@@ -154,133 +133,84 @@ const translations = {
       firebase: "Firebase",
       stateManagement: "State Management",
     },
-
-    // Additional properties for the page
-    categoryTitle: "Categories:",
-    sourceCodeTitle: "Source Code:",
+    categoryTitle: "Kategorien:",
+    sourceCodeTitle: "Quellcode:",
     websiteTitle: "Website:",
-    privateProject: "Private Project",
-
-    //place holder input
-    // Add placeholders for the input fields in German
-    placeholderName: "Name",
-    placeholderEmail: "E-Mail",
-    placeholderSubject: "Betreff",
-    placeholderMessage: "Nachricht",
-
-    //footer
-    rightsReserved: "Alle Rechte vorbehalten.",
+    privateProject: "Privates Projekt",
+  },
+  fr: {
+    name: "Oussama Rhayrhay",
+    workType: "DISPONIBLE POUR TRAVAIL",
+    footerText: "Merci de votre visite!",
+    contactHeading: "Contactez-moi",
+    contactSubheading: "Faisons briller votre marque!",
+    contactDescription:
+      "Si vous souhaitez travailler avec moi ou simplement entrer en contact, nous serions ravis de vous entendre!",
+    buttonSendMessage: "Envoyer un message",
+    services: {
+      webDevTitle: "DÉVELOPPEMENT WEB ET D'APPLICATIONS",
+      webDevDescription:
+        "Offrant des services de développement web de premier ordre adaptés à vos besoins. Réalisons votre vision numérique.",
+      uiuxTitle: "DESIGN UI / UX",
+      uiuxDescription:
+        "Création d'interfaces utilisateur intuitives et d'expériences engageantes. Élevez votre présence numérique avec notre expertise en design UI/UX.",
+    },
+    portfolio: {
+      title: "PORTFOLIO",
+      description1: "Découvrez mon travail &",
+      description2: "donnez-nous",
+      actionableInsights: "votre retour",
+    },
+    footerLink: "Oussama Rhayrhay",
+    buttonContactMe: "CONTACTEZ-MOI",
+    yearsOfExperience: "Années d'expérience",
+    greeting: "Bonjour, je suis",
+    jobTitle: "Développeur de logiciels.",
+    servicesHeading: "SERVICES",
+    servicesDescription1: "Transformez les informations",
+    servicesDescription2: "en insights exploitables",
+    projects: {
+      GetDPizza: {
+        description:
+          "PizzaPortal est une application web qui permet aux utilisateurs de commander des pizzas en ligne. Le projet est construit avec React, React Router v6.4, Tailwind CSS pour le style, Local Storage pour la connexion utilisateur, Redux Toolkit pour la gestion d'état et Framer Motion pour de petites animations.",
+        categories: "Front End",
+      },
+      BookWelt: {
+        description:
+          "Book Welt est un tableau de bord administratif conçu pour la gestion efficace des données de réservation et l'analyse statistique grâce à des graphiques clairs et intuitifs. Construit avec React, React Query, des notifications Toast, Recharts et Styled Components, ce tableau de bord offre une expérience fluide aux employés pour suivre diverses statistiques et gérer les réservations facilement.",
+        categories: "Développement Full Stack",
+      },
+      Creaskale: {
+        description: "Creaskale est une solution mobile innovante.",
+        categories: "Développement Mobile",
+      },
+    },
+    toolsAndTechnologies: {
+      react: "React",
+      reactRouter: "React Router",
+      tailwindCSS: "Tailwind CSS",
+      localStorage: "Local Storage",
+      reduxToolkit: "Redux Toolkit",
+      framerMotion: "Framer Motion",
+      html: "HTML",
+      css: "CSS",
+      javascript: "JavaScript",
+      flutter: "Flutter",
+      dart: "Dart",
+      bloc: "BLoC",
+      firebase: "Firebase",
+      stateManagement: "Gestion de l'état",
+    },
+    categoryTitle: "Catégories:",
+    sourceCodeTitle: "Code source:",
+    websiteTitle: "Site Web:",
+    privateProject: "Projet Privé",
+    placeholderName: "Nom",
+    placeholderEmail: "Email",
+    placeholderSubject: "Sujet",
+    placeholderMessage: "Message",
+    rightsReserved: "Tous droits réservés.",
   },
 };
 
 export default translations;
-
-// // translations.js
-// const translations = {
-//   en: {
-//     name: "Oussama Rhayrhay",
-//     workType: "AVAILABLE FOR WORK",
-//     footerText: "Thank you for visiting!",
-//     contactHeading: "Get In Touch",
-//     contactSubheading: "Let us make your brand brilliant!",
-//     contactDescription:
-//       "If you would like to work with me or just want to get in touch, we’d love to hear from you!",
-//     buttonSendMessage: "Send A Message",
-
-//     // Project Translations
-//     projects: {
-//       getDPizza: {
-//         description:
-//           "PizzaPortal is a web application that allows users to order pizza online. The project is built using React, React Router v6.4, Tailwind CSS for styling, Local Storage for user login, Redux Toolkit for state management, and Framer Motion for small animations.",
-//         categories: "Front End",
-//       },
-//       bookWelt: {
-//         description:
-//           "Book Welt is an admin dashboard designed for efficient management of booking data and statistical analysis through clean and intuitive charts. Built using React, React Query, Toasts, Recharts, and Styled Components, this dashboard provides a seamless experience for employees to monitor various stats and handle bookings effortlessly.",
-//         categories: "Full Stack Development",
-//       },
-//       creaskale: {
-//         description: "Creaskale is an innovative mobile solution.",
-//         categories: "Mobile Development",
-//       },
-//     },
-
-//     // Other Translations
-//     toolsAndTechnologies: {
-//       react: "React",
-//       reactRouter: "React Router",
-//       tailwindCSS: "Tailwind CSS",
-//       localStorage: "Local Storage",
-//       reduxToolkit: "Redux Toolkit",
-//       framerMotion: "Framer Motion",
-//       html: "HTML",
-//       css: "CSS",
-//       javascript: "JavaScript",
-//       flutter: "Flutter",
-//       dart: "Dart",
-//       bloc: "BLoC",
-//       firebase: "Firebase",
-//       stateManagement: "State Management",
-//     },
-
-//     // Additional properties for the page
-//     categoryTitle: "Categories:",
-//     sourceCodeTitle: "Source Code:",
-//     websiteTitle: "Website:",
-//     privateProject: "Private Project",
-//   },
-//   de: {
-//     name: "Oussama Rhayrhay",
-//     workType: "VERFÜGBAR FÜR ARBEIT",
-//     footerText: "Danke für Ihren Besuch!",
-//     contactHeading: "Nehmen Sie Kontakt auf",
-//     contactSubheading: "Lassen Sie uns Ihre Marke strahlen!",
-//     contactDescription:
-//       "Wenn Sie mit mir arbeiten möchten oder einfach nur in Kontakt treten möchten, würden wir uns freuen, von Ihnen zu hören!",
-//     buttonSendMessage: "Nachricht senden",
-
-//     // Project Translations
-//     projects: {
-//       getDPizza: {
-//         description:
-//           "PizzaPortal ist eine Webanwendung, die es Benutzern ermöglicht, Pizza online zu bestellen. Das Projekt wurde mit React, React Router v6.4, Tailwind CSS für das Styling, Local Storage für die Benutzeranmeldung, Redux Toolkit für das State Management und Framer Motion für kleine Animationen erstellt.",
-//         categories: "Frontend",
-//       },
-//       bookWelt: {
-//         description:
-//           "Book Welt ist ein Admin-Dashboard, das für das effiziente Management von Buchungsdaten und die statistische Analyse durch saubere und intuitive Diagramme entwickelt wurde. Dieses Dashboard, das mit React, React Query, Toasts, Recharts und Styled Components erstellt wurde, bietet den Mitarbeitern ein nahtloses Erlebnis bei der Überwachung verschiedener Statistiken und der einfachen Verwaltung von Buchungen.",
-//         categories: "Full Stack Entwicklung",
-//       },
-//       creaskale: {
-//         description: "Creaskale ist eine innovative mobile Lösung.",
-//         categories: "Mobile Entwicklung",
-//       },
-//     },
-
-//     // Other Translations
-//     toolsAndTechnologies: {
-//       react: "React",
-//       reactRouter: "React Router",
-//       tailwindCSS: "Tailwind CSS",
-//       localStorage: "Local Storage",
-//       reduxToolkit: "Redux Toolkit",
-//       framerMotion: "Framer Motion",
-//       html: "HTML",
-//       css: "CSS",
-//       javascript: "JavaScript",
-//       flutter: "Flutter",
-//       dart: "Dart",
-//       bloc: "BLoC",
-//       firebase: "Firebase",
-//       stateManagement: "State Management",
-//     },
-
-//     // Additional properties for the page
-//     categoryTitle: "Kategorien:",
-//     sourceCodeTitle: "Quellcode:",
-//     websiteTitle: "Website:",
-//     privateProject: "Privates Projekt",
-//   },
-// };
-
-// export default translations;
