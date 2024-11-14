@@ -70,6 +70,10 @@ const translations = {
     placeholderMessage: "Message",
     rightsReserved: "All rights reserved.",
     toolsAndTechnologiesTitle: "Tools & Technologies",
+
+    categoryTitle: "Categories:",
+    sourceCodeTitle: "Source Code:",
+    websiteTitle: "Website:",
   },
   de: {
     name: "Oussama Rhayrhay",

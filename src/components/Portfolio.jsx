@@ -70,10 +70,10 @@ const ProjectImage = styled.img`
   width: 90%;  
   height: 300px;  
   object-fit: cover;  
-  transition: opacity 0.3s ease;  
-  ${CardContainer}:hover & {  
+  /* transition: opacity 0.3s ease;   */
+  /* ${CardContainer}:hover & {  
     opacity: 0.7;  
-  }  
+  }   */
 `;  
 
 const TechName = styled.h3`  
