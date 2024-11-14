@@ -47,6 +47,11 @@ const translations = {
         description: "Creaskale is an innovative mobile solution.",
         categories: "Mobile Development",
       },
+      RepairCar: {
+        description:
+          "RepairCar is an app currently under development, with the front-end mobile version successfully completed.",
+        categories: "Mobile Development",
+      },
     },
     toolsAndTechnologies: {
       react: "React",
@@ -121,6 +126,11 @@ const translations = {
         description: "Creaskale ist eine innovative mobile Lösung.",
         categories: "Mobile Entwicklung",
       },
+      RepairCar: {
+        description:
+          "RepairCar is an app currently under development, with the front-end mobile version successfully completed.",
+        categories: "Mobile Entwicklung",
+      },
     },
     toolsAndTechnologies: {
       react: "React",
@@ -189,6 +199,11 @@ const translations = {
       },
       Creaskale: {
         description: "Creaskale est une solution mobile innovante.",
+        categories: "Développement Mobile",
+      },
+      RepairCar: {
+        description:
+          "RepairCar est une application actuellement en cours de développement, avec la version mobile du front-end déjà terminée",
         categories: "Développement Mobile",
       },
     },

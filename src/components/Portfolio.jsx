@@ -57,8 +57,8 @@ function ProjectCard({
 const CardContainer = styled.div`  
   flex: 1 0 45%;  
   border-radius: 10px;  
-  /* overflow: hidden;   */
-  /* transition: transform 0.3s;   */
+  overflow: hidden;  
+  transition: transform 0.3s;  
   margin: 10px;  
 
   @media (max-width: 768px) {  
@@ -70,10 +70,10 @@ const ProjectImage = styled.img`
   width: 90%;  
   height: 300px;  
   object-fit: cover;  
-  /* transition: opacity 0.3s ease;   */
-  /* ${CardContainer}:hover & {  
+  transition: opacity 0.3s ease;  
+  ${CardContainer}:hover & {  
     opacity: 0.7;  
-  }   */
+  }  
 `;  
 
 const TechName = styled.h3`  

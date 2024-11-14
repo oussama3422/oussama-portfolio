@@ -12,19 +12,28 @@ import { projects } from "../assets/data/projects";
 import Loading from "./Loading";
 import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { FaChevronUp } from "react-icons/fa";
+
 const ProjectDetail = () => {
-  const [loading, setLoading] = useState(true); // State to manage loading
+  const [loading, setLoading] = useState(false); // State to manage loading
   const { name } = useParams();
   const { language, translations } = useLanguage(); // Get current language and translations
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Simulating loading time
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 100);
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300); // Show button after scrolling down 300px
+    };
 
-    return () => clearTimeout(timer);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (loading) {
     return <Loading />;
@@ -144,9 +153,37 @@ const ProjectDetail = () => {
           ))}
         </ImagesContainer>
       )}
+
+      <BackToTopButton show={showBackToTop} onClick={scrollToTop}>
+        <FaChevronUp />
+      </BackToTopButton>
     </Container>
   );
 };
+
+const BackToTopButton = styled.button`
+  position: fixed; /* Fixed positioning to stay at the bottom right */
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
+  background-color: grey; /* Transparent background */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding for better click area */
+  cursor: pointer; /* Change cursor to pointer */
+  opacity: 0.7; /* Slightly transparent to blend in */
+  transition: opacity 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  z-index: 1000; /* High z-index to stay above other elements */
+
+  &:hover {
+    opacity: 1;
+    color: grey;
+    background-color: white;
+  }
+
+  display: ${(props) =>
+    props.show ? "block" : "none"}; /* Show or hide based on state */
+  font-size: 24px; /* Size of the icon */
+`;
 
 // Styled Components
 const H1 = styled.h1`
