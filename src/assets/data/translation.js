@@ -69,6 +69,7 @@ const translations = {
     placeholderSubject: "Subject",
     placeholderMessage: "Message",
     rightsReserved: "All rights reserved.",
+    toolsAndTechnologiesTitle: "Tools & Technologies",
   },
   de: {
     name: "Oussama Rhayrhay",
@@ -137,6 +138,8 @@ const translations = {
     sourceCodeTitle: "Quellcode:",
     websiteTitle: "Website:",
     privateProject: "Privates Projekt",
+    toolsAndTechnologiesTitle: "Werkzeuge & Technologien",
+    rightsReserved: "Alle Rechte vorbehalten.",
   },
   fr: {
     name: "Oussama Rhayrhay",
@@ -210,6 +213,7 @@ const translations = {
     placeholderSubject: "Sujet",
     placeholderMessage: "Message",
     rightsReserved: "Tous droits réservés.",
+    toolsAndTechnologiesTitle: "Outils & Technologies",
   },
 };
 

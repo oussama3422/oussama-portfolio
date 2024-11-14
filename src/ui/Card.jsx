@@ -8,13 +8,13 @@ const Card = styled.div`
   position: relative;
   text-align: start;
   width: 40%;
+  margin-top: 2rem;
   &:hover {
     border-bottom: 2px solid #8aa51d;
   }
   &:before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -22,8 +22,7 @@ const Card = styled.div`
     border-radius: 8px;
     z-index: -1;
   }
-
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     width: 100%;
   }
 `;

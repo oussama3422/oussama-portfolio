@@ -51,6 +51,8 @@ const ProjectDetail = () => {
   const categoryTitle = translations[language]?.categoryTitle;
   const sourceCodeTitle = translations[language]?.sourceCodeTitle;
   const websiteTitle = translations[language]?.websiteTitle;
+  const toolsAndTechnologiesTitle =
+    translations[language]?.toolsAndTechnologiesTitle;
 
   const { githubLink, image, toolsAndTechnologies, images } = project;
 
@@ -65,7 +67,7 @@ const ProjectDetail = () => {
           <H1>{decodeURIComponent(name)}</H1>
           <Description>{description}</Description>
           <ToolsContainer>
-            <DetailTitle>Tools & Technologies:</DetailTitle>
+            <DetailTitle>{toolsAndTechnologiesTitle}:</DetailTitle>
             <ToolsList>
               {toolsAndTechnologies.map((tool, index) => (
                 <ToolItem key={index}>

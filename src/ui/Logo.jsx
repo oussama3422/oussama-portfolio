@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import logoImage from "../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 function Logo() {
   return (
     <LogoContainer>
-      <LogoImg src={logoImage} alt="Logo" />
+      <Link to="/">
+        <LogoImg src={logoImage} alt="Logo" />
+      </Link>
     </LogoContainer>
   );
 }
