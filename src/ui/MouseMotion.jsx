@@ -115,27 +115,24 @@ import { motion } from "framer-motion";
 
 const MouseFollower = ({ isHovering }) => {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [animationFrameRequested, setAnimationFrameRequested] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      if (!animationFrameRequested) {
-        setAnimationFrameRequested(true);
+    let animationFrameId;
 
-        // Request animation frame for smoother updates
-        requestAnimationFrame(() => {
-          setMousePosition({ x: event.clientX, y: event.clientY });
-          setAnimationFrameRequested(false);
-        });
-      }
+    const handleMouseMove = (event) => {
+      const updatePosition = () => {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+      };
+      animationFrameId = requestAnimationFrame(updatePosition);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [animationFrameRequested]);
+  }, []);
 
   const handleFollowerClick = () => {
     window.location.href = "https://www.example.com"; // Replace with your target URL
@@ -153,18 +150,17 @@ const MouseFollower = ({ isHovering }) => {
         borderRadius: "50%",
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         pointerEvents: "auto",
-        transform: `translate(${mousePosition.x - (isHovering ? 20 : 5)}px, ${
-          mousePosition.y - (isHovering ? 20 : 5)
+        transform: `translate(${mousePosition.x - (isHovering ? 10 : 5)}px, ${
+          mousePosition.y + (isHovering ? 10 : 10)
         }px)`,
-        zIndex: 1000,
       }}
       initial={{
         x: mousePosition.x,
         y: mousePosition.y,
       }}
       animate={{
-        x: mousePosition.x - (isHovering ? 20 : 5),
-        y: mousePosition.y - (isHovering ? 20 : 5),
+        x: mousePosition.x - (isHovering ? 10 : 5),
+        y: mousePosition.y + (isHovering ? 10 : 10),
       }}
       transition={{
         type: "spring",
