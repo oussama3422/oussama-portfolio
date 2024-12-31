@@ -145,8 +145,8 @@ const Contact = forwardRef((_props, ref) => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [snackbarVisible, setSnackbarVisible] = useState(false); // Snackbar visibility state  
-
+  const [snackbarVisible, setSnackbarVisible] = useState(false); // Snackbar visibility state
+  const [snackbarVisible2, setSnackbarVisible2] = useState(false); // Snackbar visibility state
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -182,6 +182,12 @@ const Contact = forwardRef((_props, ref) => {
       })
       .catch((err) => {
         console.error("FAILED...", err);
+        setSnackbarVisible2(true); // Show snackbar
+
+        // Hide the snackbar after 3 seconds
+        setTimeout(() => {
+          setSnackbarVisible(false);
+        }, 3000);
         alert("Failed to send your message, please try again later.");
       });
   };
@@ -252,8 +258,12 @@ const Contact = forwardRef((_props, ref) => {
         </Form>
         {/* Snackbar for success message */}
         <Snackbar
-          message="Message sent successfully!"
+          message="Email has been sent successfully!"
           visible={snackbarVisible}
+        />
+        <Snackbar
+          message="Email has been not send , try other time."
+          visible={snackbarVisible2}
         />
       </ContentWrapper>
     </Section>
