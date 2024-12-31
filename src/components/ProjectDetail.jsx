@@ -162,18 +162,17 @@ const ProjectDetail = () => {
 };
 
 const BackToTopButton = styled.button`
-  position: fixed; /* Fixed positioning to stay at the bottom right */
-  bottom: 20px; /* Distance from the bottom */
-  right: 20px; /* Distance from the right */
-  background-color: grey; /* Transparent background */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px; /* Padding for better click area */
-  cursor: pointer; /* Change cursor to pointer */
-  opacity: 0.7; /* Slightly transparent to blend in */
-  transition: opacity 0.3s, color 0.3s; /* Smooth transition for hover effects */
-  z-index: 1000; /* High z-index to stay above other elements */
-
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: grey;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s, color 0.3s;
+  z-index: 1000;
   &:hover {
     opacity: 1;
     color: grey;
@@ -232,21 +231,22 @@ const ContentContainer = styled.div`
 
 const TextContainer = styled.div`
   display: flex;
-  flex-direction: column; /* Stack title and description vertically */
-  margin-right: 20px; /* Space between text and details */
-  text-align: left; /* Left-align text */
-  flex: 1; /* Allow to take available space */
+  flex-direction: column;
+  margin-right: 20px;
+  text-align: left;
+  flex: 1;
 `;
 const DetailsContainer = styled.div`
   display: flex;
-  flex-direction: column; /* Stack detail items vertically */
-  background-color: #1d1d1d; /* Dark background */
-  border: 1px solid #6f7376; /* Border */
-  padding: 10px; /* Inner padding */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow */
-  border-radius: 8px; /* Rounded corners */
-  margin-top: 15px; /* Space above the details container */
+  flex-direction: column;
+  background-color: #1d1d1d;
+  border: 1px solid #6f7376;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-top: 15px;
 `;
+
 
 const DetailItem = styled.div`
   display: flex;
@@ -257,33 +257,32 @@ const DetailItem = styled.div`
   background-color: #1d1d1d;
 `;
 
+
 const Icon = styled.div`
-  margin-right: 10px; /* Space between icon and text */
-  color: #ffffff; /* White color for icons */
+  margin-right: 10px;
+  color: #ffffff;
 `;
 
 const DetailContent = styled.div`
   display: flex;
-  flex-direction: column; /* Stack title and text vertically */
+  flex-direction: column;
 `;
 
 const DetailTitle = styled.span`
-  font-weight: bold; /* Bold for titles */
-  color: #ffffff; /* White color for the titles */
+  font-weight: bold;
+  color: #ffffff;
   font-size: 1rem;
 `;
 
 const DetailText = styled.span`
-  color: white; /* Text color */
-  margin-top: 5px; /* Space between title and text */
+  color: white;
+  margin-top: 5px;
 `;
-
 const GitHubLink = styled(RouterLink)`
   color: #6f7376;
   text-decoration: none;
-
   &:hover {
-    text-decoration: underline; /* Optional, adds underline on hover */
+    text-decoration: underline;
   }
 `;
 

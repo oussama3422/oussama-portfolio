@@ -136,6 +136,7 @@
 import { forwardRef, useState } from "react";
 import styled from "styled-components";
 import { useLanguage } from "../context/LanguageContext"; // Import useLanguage
+import emailjs from "emailjs-com"; // Import EmailJS
 
 // eslint-disable-next-line react/display-name
 const Contact = forwardRef((_props, ref) => {
@@ -144,6 +145,39 @@ const Contact = forwardRef((_props, ref) => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const templateParams = {
+      name,
+      email,
+      subject,
+      message,
+    };
+
+    // Call EmailJS service here
+    emailjs
+      .send(
+        "service_0z6fk87",
+        "template_k1za8r8",
+        templateParams,
+        "mZISUaiJxK6EaO2z6"
+      )
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        alert("Message sent successfully!");
+        // Reset the form fields
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      })
+      .catch((err) => {
+        console.error("FAILED...", err);
+        alert("Failed to send your message, please try again later.");
+      });
+  };
 
   return (
     <Section ref={ref}>
@@ -177,33 +211,33 @@ const Contact = forwardRef((_props, ref) => {
           </SocialLinks>
         </TextContent>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Input
             type="text"
-            placeholder={translations[language].placeholderName} // Use translated placeholder
+            placeholder={translations[language].placeholderName}
             value={name}
-            onChange={(e) => setName(e.target.value)} // Handle state update
+            onChange={(e) => setName(e.target.value)}
             required
           />
           <Input
             type="email"
-            placeholder={translations[language].placeholderEmail} // Use translated placeholder
+            placeholder={translations[language].placeholderEmail}
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // Handle state update
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Input
             type="text"
-            placeholder={translations[language].placeholderSubject} // Use translated placeholder
+            placeholder={translations[language].placeholderSubject}
             value={subject}
-            onChange={(e) => setSubject(e.target.value)} // Handle state update
+            onChange={(e) => setSubject(e.target.value)}
             required
           />
           <Textarea
-            placeholder={translations[language].placeholderMessage} // Use translated placeholder
+            placeholder={translations[language].placeholderMessage}
             required
             value={message}
-            onChange={(e) => setMessage(e.target.value)} // Handle state update
+            onChange={(e) => setMessage(e.target.value)}
           />
           <Button type="submit">
             {translations[language].buttonSendMessage}
@@ -213,6 +247,7 @@ const Contact = forwardRef((_props, ref) => {
     </Section>
   );
 });
+
 // Styled Components
 const Section = styled.section`
   background: transparent;
