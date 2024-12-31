@@ -115,26 +115,41 @@ import { useEffect, useRef } from "react";
 const MouseFollower = ({ isHovering }) => {
   const followerRef = useRef(null); // Reference to the follower element
   const requestRef = useRef(null); // Reference for requestAnimationFrame
-  const mousePosition = useRef({ x: 0, y: 0 }); // Store the last known mouse position
+  const lastMousePosition = useRef({ x: 0, y: 0 }); // Last known position
+  const lastStyles = useRef({ x: 0, y: 0, size: 10 }); // Track last applied styles
 
   useEffect(() => {
     const follower = followerRef.current;
 
     const handleMouseMove = (event) => {
-      mousePosition.current = { x: event.clientX, y: event.clientY };
+      const { clientX: x, clientY: y } = event;
+      lastMousePosition.current = { x, y };
 
       if (!requestRef.current) {
         requestRef.current = requestAnimationFrame(() => {
-          const { x, y } = mousePosition.current;
+          const { x, y } = lastMousePosition.current;
 
-          if (follower) {
-            follower.style.transform = `translate(${
-              x - (isHovering ? 20 : 5)
-            }px, ${y - (isHovering ? 20 : 5)}px)`;
-            follower.style.width = isHovering ? "40px" : "10px";
-            follower.style.height = isHovering ? "40px" : "10px";
+          // Calculate size based on hover state
+          const size = isHovering ? 40 : 10;
+
+          // Check if there's a significant change in position or size before updating
+          if (
+            Math.abs(lastStyles.current.x - x) > 1 ||
+            Math.abs(lastStyles.current.y - y) > 1 ||
+            lastStyles.current.size !== size
+          ) {
+            // Update styles
+            follower.style.transform = `translate(${x - size / 2}px, ${
+              y - size / 2
+            }px)`;
+            follower.style.width = `${size}px`;
+            follower.style.height = `${size}px`;
+
+            // Store last applied styles
+            lastStyles.current = { x, y, size };
           }
-          requestRef.current = null; // Reset the request reference
+
+          requestRef.current = null; // Reset for the next frame
         });
       }
     };
@@ -143,9 +158,7 @@ const MouseFollower = ({ isHovering }) => {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
   }, [isHovering]);
 
