@@ -110,62 +110,56 @@
 // };
 
 // export default MouseFollower;
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const MouseFollower = ({ isHovering }) => {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const followerRef = useRef(null); // Reference to the follower element
+  const requestRef = useRef(null); // Reference for requestAnimationFrame
 
   useEffect(() => {
-    let animationFrameId;
-
+    const follower = followerRef.current;
     const handleMouseMove = (event) => {
+      const { clientX: x, clientY: y } = event;
+
+      // Efficiently update the position using transform
       const updatePosition = () => {
-        setMousePosition({ x: event.clientX, y: event.clientY });
+        if (follower) {
+          follower.style.transform = `translate(${
+            x - (isHovering ? 20 : 5)
+          }px, ${y - (isHovering ? 20 : 5)}px)`;
+          follower.style.width = isHovering ? "40px" : "10px";
+          follower.style.height = isHovering ? "40px" : "10px";
+        }
+        requestRef.current = null; // Reset the request reference
       };
-      animationFrameId = requestAnimationFrame(updatePosition);
+
+      if (!requestRef.current) {
+        requestRef.current = requestAnimationFrame(updatePosition);
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
     };
-  }, []);
-
-  const handleFollowerClick = () => {
-    window.location.href = "https://www.example.com"; // Replace with your target URL
-  };
+  }, [isHovering]);
 
   return (
-    <motion.div
-      onClick={handleFollowerClick}
+    <div
+      ref={followerRef}
       style={{
         position: "fixed",
         top: 0,
         left: 0,
-        width: isHovering ? "40px" : "10px",
-        height: isHovering ? "40px" : "10px",
+        pointerEvents: "none",
         borderRadius: "50%",
         backgroundColor: "rgba(255, 255, 255, 0.7)",
-        pointerEvents: "auto",
-        transform: `translate(${mousePosition.x - (isHovering ? 10 : 5)}px, ${
-          mousePosition.y + (isHovering ? 10 : 10)
-        }px)`,
-      }}
-      initial={{
-        x: mousePosition.x,
-        y: mousePosition.y,
-      }}
-      animate={{
-        x: mousePosition.x - (isHovering ? 10 : 5),
-        y: mousePosition.y + (isHovering ? 10 : 10),
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 500,
-        damping: 10,
+        transform: "translate(-100px, -100px)", // Start off-screen
+        transition: isHovering ? "none" : "all 0.3s ease", // Smooth transitions when not hovering
       }}
     />
   );
