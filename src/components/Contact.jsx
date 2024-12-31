@@ -145,6 +145,8 @@ const Contact = forwardRef((_props, ref) => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [snackbarVisible, setSnackbarVisible] = useState(false); // Snackbar visibility state  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -166,12 +168,17 @@ const Contact = forwardRef((_props, ref) => {
       )
       .then((response) => {
         console.log("SUCCESS!", response.status, response.text);
-        alert("Message sent successfully!");
+        setSnackbarVisible(true); // Show snackbar
         // Reset the form fields
         setName("");
         setEmail("");
         setSubject("");
         setMessage("");
+
+        // Hide the snackbar after 3 seconds
+        setTimeout(() => {
+          setSnackbarVisible(false);
+        }, 3000);
       })
       .catch((err) => {
         console.error("FAILED...", err);
@@ -243,6 +250,11 @@ const Contact = forwardRef((_props, ref) => {
             {translations[language].buttonSendMessage}
           </Button>
         </Form>
+        {/* Snackbar for success message */}
+        <Snackbar
+          message="Message sent successfully!"
+          visible={snackbarVisible}
+        />
       </ContentWrapper>
     </Section>
   );
@@ -352,5 +364,32 @@ const Button = styled.button`
     background-color: #7b9413;
   }
 `;
+
+const SnackbarContainer = styled.div`
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+  min-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #4caf50; /* Green */
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1000;
+  right: 30px;
+  bottom: 30px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+
+  &.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+`;
+
+const Snackbar = ({ message, visible }) => {
+  return <SnackbarContainer visible={visible}>{message}</SnackbarContainer>;
+};
 
 export default Contact;
