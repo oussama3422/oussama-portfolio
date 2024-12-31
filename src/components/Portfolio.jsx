@@ -1,7 +1,7 @@
 // import styled from "styled-components";
 // import { Link } from "react-router-dom";
 // import { projects } from "../assets/data/projects";
-// import MouseFollower from "../ui/MouseMotion";
+// import OptimizedMouseFollower from "../ui/MouseMotion";
 // import { useState } from "react";
 
 // function Portfolio() {
@@ -20,7 +20,7 @@
 //           onMouseLeave={() => setHoveredIndex(null)}
 //         />
 //       ))}
-//       <MouseFollower isHovering={hoveredIndex !== null} />
+//       <OptimizedMouseFollower isHovering={hoveredIndex !== null} />
 //     </ProjectContainer>
 //   );
 // }
@@ -106,7 +106,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { projects } from "../assets/data/projects";
-import MouseFollower from "../ui/MouseMotion";
+import OptimizedMouseFollower from "../ui/MouseMotion";
 
 function Portfolio() {
   return (
@@ -119,7 +119,7 @@ function Portfolio() {
           categories={project.categories}
         />
       ))}
-      <MouseFollower isHovering={false} />
+      <OptimizedMouseFollower isHovering={false} />
     </ProjectContainer>
   );
 }

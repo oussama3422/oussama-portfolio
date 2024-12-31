@@ -9,7 +9,7 @@ import PortfolioTitle from "./ui/PortfolioTitle";
 import ContactButton from "./ui/ContactButton";
 import { useEffect, useRef, useState } from "react";
 import Loading from "./components/Loading";
-import MouseFollower from "./ui/MouseMotion";
+import OptimizedMouseFollower from "./ui/MouseMotion";
 import ContactSection from "./components/Contact";
 import { LanguageProvider } from "./context/LanguageContext";
 // import GlobalStyle from "./assets/GlobalStyle";
@@ -17,7 +17,7 @@ const App = () => {
   const contactRef = useRef(null); // Create a ref for the Contact section
   const [loading, setLoading] = useState(true); // State to manage loading
   const [color, setColor] = useState("#ffffff"); // Default loader color
-  const location = useLocation(); // Get the current location  
+  const location = useLocation(); // Get the current location
 
   // Simulate loading duration
   useEffect(() => {
@@ -34,7 +34,7 @@ const App = () => {
   return (
     <LanguageProvider>
       <AppLayout>
-        <MouseFollower />
+        <OptimizedMouseFollower />
         <Routes>
           <Route
             path="/"
@@ -50,13 +50,13 @@ const App = () => {
           />
           <Route path="/project/:name" element={<ProjectDetail />} />
         </Routes>
-        {location.pathname === "/" && (  
-          <ContactButton  
-            onClick={() =>  
-              contactRef.current.scrollIntoView({ behavior: "smooth" })  
-            }  
-          />  
-        )}  
+        {location.pathname === "/" && (
+          <ContactButton
+            onClick={() =>
+              contactRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+          />
+        )}
 
         <Footer />
       </AppLayout>

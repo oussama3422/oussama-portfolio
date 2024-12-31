@@ -1,8 +1,8 @@
-// // src/components/MouseFollower.js
+// // src/components/OptimizedMouseFollower.js
 // import  { useEffect, useState } from "react";
 // import { motion } from "framer-motion";
 
-// const MouseFollower = () => {
+// const OptimizedMouseFollower = () => {
 //   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
 
 //   useEffect(() => {
@@ -54,12 +54,12 @@
 //   );
 // };
 
-// export default MouseFollower;
+// export default OptimizedMouseFollower;
 
 // import { useEffect, useState } from "react";
 // import { motion } from "framer-motion";
 
-// const MouseFollower = ({ isHovering }) => {  // Accept the isHovering prop
+// const OptimizedMouseFollower = ({ isHovering }) => {  // Accept the isHovering prop
 //   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
 
 //   useEffect(() => {
@@ -109,47 +109,34 @@
 //   );
 // };
 
-// export default MouseFollower;
+// export default OptimizedMouseFollower;
 import { useEffect, useRef } from "react";
 
-const MouseFollower = ({ isHovering }) => {
-  const followerRef = useRef(null); // Reference to the follower element
-  const requestRef = useRef(null); // Reference for requestAnimationFrame
-  const lastMousePosition = useRef({ x: 0, y: 0 }); // Last known position
-  const lastStyles = useRef({ x: 0, y: 0, size: 10 }); // Track last applied styles
+const OptimizedMouseFollower = ({ isHovering }) => {
+  const followerRef = useRef(null);
+  const position = useRef({ x: -100, y: -100 }); // Initial off-screen position
 
   useEffect(() => {
     const follower = followerRef.current;
+    let animationFrameId = null;
 
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      lastMousePosition.current = { x, y };
+    const handleMouseMove = ({ clientX, clientY }) => {
+      // Avoid recalculations if movement is minimal
+      if (
+        Math.abs(clientX - position.current.x) < 2 &&
+        Math.abs(clientY - position.current.y) < 2
+      ) {
+        return;
+      }
 
-      if (!requestRef.current) {
-        requestRef.current = requestAnimationFrame(() => {
-          const { x, y } = lastMousePosition.current;
+      position.current = { x: clientX, y: clientY };
 
-          // Calculate size based on hover state
-          const size = isHovering ? 40 : 10;
+      // Use requestAnimationFrame for smooth updates
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(() => {
+          follower.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
 
-          // Check if there's a significant change in position or size before updating
-          if (
-            Math.abs(lastStyles.current.x - x) > 1 ||
-            Math.abs(lastStyles.current.y - y) > 1 ||
-            lastStyles.current.size !== size
-          ) {
-            // Update styles
-            follower.style.transform = `translate(${x - size / 2}px, ${
-              y - size / 2
-            }px)`;
-            follower.style.width = `${size}px`;
-            follower.style.height = `${size}px`;
-
-            // Store last applied styles
-            lastStyles.current = { x, y, size };
-          }
-
-          requestRef.current = null; // Reset for the next frame
+          animationFrameId = null;
         });
       }
     };
@@ -158,9 +145,9 @@ const MouseFollower = ({ isHovering }) => {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [isHovering]);
+  }, []);
 
   return (
     <div
@@ -172,11 +159,14 @@ const MouseFollower = ({ isHovering }) => {
         pointerEvents: "none",
         borderRadius: "50%",
         backgroundColor: "rgba(255, 255, 255, 0.7)",
-        transform: "translate(-100px, -100px)", // Start off-screen
-        transition: isHovering ? "none" : "all 0.2s ease", // Smooth transitions when not hovering
+        width: isHovering ? "40px" : "10px",
+        height: isHovering ? "40px" : "10px",
+        transform: "translate(-100px, -100px)", // Initial off-screen position
+        transition: "width 0.2s ease, height 0.2s ease", // GPU-accelerated transitions
+        willChange: "transform", // Optimize GPU usage
       }}
     />
   );
 };
 
-export default MouseFollower;
+export default OptimizedMouseFollower;
