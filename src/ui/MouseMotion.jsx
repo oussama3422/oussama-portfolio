@@ -171,69 +171,11 @@
 
 // export default OptimizedMouseFollower;
 
-// import { useEffect, useRef } from "react";
-
-// const MouseFollowerOptimized = ({ isHovering }) => {
-//   const followerRef = useRef(null);
-//   const position = useRef({ x: -100, y: -100 }); // Initial off-screen position
-//   let lastUpdateTime = useRef(0);
-
-//   useEffect(() => {
-//     const follower = followerRef.current;
-//     let animationFrameId = null;
-
-//     const handleMouseMove = ({ clientX, clientY }) => {
-//       const now = performance.now();
-
-//       // Process at 60 FPS (~16ms intervals)
-//       if (now - lastUpdateTime.current < 16) return;
-//       lastUpdateTime.current = now;
-
-//       position.current = { x: clientX, y: clientY };
-
-//       // Optimize updates via requestAnimationFrame
-//       if (!animationFrameId) {
-//         animationFrameId = requestAnimationFrame(() => {
-//           follower.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
-//           animationFrameId = null;
-//         });
-//       }
-//     };
-
-//     window.addEventListener("mousemove", handleMouseMove);
-
-//     return () => {
-//       window.removeEventListener("mousemove", handleMouseMove);
-//       if (animationFrameId) cancelAnimationFrame(animationFrameId);
-//     };
-//   }, []);
-
-//   return (
-//     <div
-//       ref={followerRef}
-//       style={{
-//         position: "fixed",
-//         top: 0,
-//         left: 0,
-//         pointerEvents: "none",
-//         borderRadius: "50%",
-//         backgroundColor: "rgba(255, 255, 255, 0.7)",
-//         width: isHovering ? "40px" : "10px",
-//         height: isHovering ? "40px" : "10px",
-//         transform: "translate(-100px, -100px)", // Initial off-screen position
-//         transition: "width 0.2s ease, height 0.2s ease", // GPU-accelerated transitions
-//         willChange: "transform", // Optimize GPU usage
-//       }}
-//     />
-//   );
-// };
-
-// export default MouseFollowerOptimized;
 import { useEffect, useRef } from "react";
 
 const MouseFollowerOptimized = ({ isHovering }) => {
   const followerRef = useRef(null);
-  const position = useRef({ x: -100, y: -100 });
+  const position = useRef({ x: -100, y: -100 }); // Initial off-screen position
   let lastUpdateTime = useRef(0);
 
   useEffect(() => {
@@ -243,13 +185,13 @@ const MouseFollowerOptimized = ({ isHovering }) => {
     const handleMouseMove = ({ clientX, clientY }) => {
       const now = performance.now();
 
-      // Throttle updates to ~60 FPS (16ms intervals)
+      // Process at 60 FPS (~16ms intervals)
       if (now - lastUpdateTime.current < 16) return;
       lastUpdateTime.current = now;
 
       position.current = { x: clientX, y: clientY };
 
-      // Optimize updates using requestAnimationFrame
+      // Optimize updates via requestAnimationFrame
       if (!animationFrameId) {
         animationFrameId = requestAnimationFrame(() => {
           follower.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
@@ -275,12 +217,12 @@ const MouseFollowerOptimized = ({ isHovering }) => {
         left: 0,
         pointerEvents: "none",
         borderRadius: "50%",
-        backgroundColor: "rgba(0, 0, 0, 0.3)",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         width: isHovering ? "40px" : "10px",
         height: isHovering ? "40px" : "10px",
-        transform: "translate(-100px, -100px)",
-        transition: "transform 0.1s ease-in-out", // Minimize transition duration
-        willChange: "transform", // Leverage GPU optimization
+        transform: "translate(-100px, -100px)", // Initial off-screen position
+        transition: "width 0.2s ease, height 0.2s ease", // GPU-accelerated transitions
+        willChange: "transform", // Optimize GPU usage
       }}
     />
   );
