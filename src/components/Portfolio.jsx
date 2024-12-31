@@ -1,107 +1,122 @@
-import styled from "styled-components";     
-import { Link } from "react-router-dom";   
-import { projects } from "../assets/data/projects"; // Assuming your projects data is here  
-import MouseFollower from "../ui/MouseMotion";   
-import { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { projects } from "../assets/data/projects";
+import MouseFollower from "../ui/MouseMotion";
+import { useState, useCallback } from "react";
+import { debounce } from "lodash"; // Install lodash for debouncing with `npm install lodash`
 
-function Portfolio() {   
-  const [isHovering, setIsHovering] = useState(false);  
-  
-  return (  
-    <ProjectContainer>  
-      {projects.map((project, index) => (  
-        <ProjectCard  
-          key={index}  
-          projectName={project.name}  
-          projectImage={project.image}  
-          categories={project.categories}  
-          onMouseEnter={() => setIsHovering(true)}  
-          onMouseLeave={() => setIsHovering(false)}  
-        />  
-      ))}  
-      <MouseFollower isHovering={isHovering} />  
-    </ProjectContainer>  
-  );  
-}  
+function Portfolio() {
+  const [isHovering, setIsHovering] = useState(false);
 
-const ProjectContainer = styled.div`  
-  display: flex;  
-  flex-wrap: wrap;  
-  justify-content: flex-start;  
-  text-align: start;  
-  max-width: 1200px;  
-  margin: 0 auto;  
-`;  
+  const handleMouseEnter = useCallback(
+    debounce(() => {
+      setIsHovering(true);
+    }, 150),
+    []
+  ); // Debounce hover on mouse enter
 
-function ProjectCard({  
-  projectName,  
-  projectImage,  
-  categories,  
-  onMouseEnter,  
-  onMouseLeave,  
-}) {   
-  return (  
-    <CardContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>  
-      <Link  
-        to={`/project/${encodeURIComponent(projectName)}`}   
-        style={{ textDecoration: "none" }}  
-      >  
-        <ProjectImage src={projectImage} alt={projectName} loading="lazy" />  
-        <TechName>{categories}</TechName>  
-        <ProjectName>{projectName}</ProjectName>  
-      </Link>  
-    </CardContainer>  
-  );  
-}  
+  const handleMouseLeave = useCallback(
+    debounce(() => {
+      setIsHovering(false);
+    }, 150),
+    []
+  ); // Debounce hover on mouse leave
 
-const CardContainer = styled.div`  
-  flex: 1 0 45%;  
-  border-radius: 10px;  
-  overflow: hidden;  
-  transition: transform 0.3s;  
-  margin: 10px;  
+  return (
+    <ProjectContainer>
+      {projects.map((project, index) => (
+        <ProjectCard
+          key={index}
+          projectName={project.name}
+          projectImage={project.image}
+          categories={project.categories}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
+      ))}
+      <MouseFollower isHovering={isHovering} />
+    </ProjectContainer>
+  );
+}
 
-  @media (max-width: 768px) {  
-    flex: 1 0 100%;  
-  }  
-`;  
+const ProjectContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-align: start;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
-const ProjectImage = styled.img`  
-  width: 90%;  
-  height: 300px;  
-  object-fit: cover;  
-  transition: opacity 0.3s ease;  
-  ${CardContainer}:hover & {  
-    opacity: 0.7;  
-  }  
-`;  
+function ProjectCard({
+  projectName,
+  projectImage,
+  categories,
+  onMouseEnter,
+  onMouseLeave,
+}) {
+  return (
+    <CardContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <Link
+        to={`/project/${encodeURIComponent(projectName)}`}
+        style={{ textDecoration: "none" }}
+      >
+        <ProjectImage src={projectImage} alt={projectName} loading="lazy" />
+        <TechName>{categories}</TechName>
+        <ProjectName>{projectName}</ProjectName>
+      </Link>
+    </CardContainer>
+  );
+}
 
-const TechName = styled.h3`  
-  border: 1px solid grey;  
-  margin-top: 10px;  
-  margin-bottom: 10px;  
-  width: 180px;  
-  margin-right: 10px;  
-  font-size: 17px;  
-  color: #ffffff;  
-  border-radius: 10rem;  
-  padding: 5px 15px;  
-  font-weight: 300;  
-  transition: background-color 0.3s ease, color 0.3s ease,  
-    border-color 0.3s ease;  
+const CardContainer = styled.div`
+  flex: 1 0 45%;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  margin: 10px;
 
-  ${CardContainer}:hover & {  
-    background-color: #8aa51d;  
-    color: black;  
-    border-color: transparent;  
-  }  
-`;  
+  @media (max-width: 768px) {
+    flex: 1 0 100%;
+  }
+`;
 
-const ProjectName = styled.p`  
-  margin: 0 10px 10px;  
-  font-size: 16px;  
-  color: #ffffff;  
-  font-weight: 300;  
-`;  
+const ProjectImage = styled.img`
+  width: 90%;
+  height: 300px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  ${CardContainer}:hover & {
+    opacity: 0.7;
+  }
+`;
+
+const TechName = styled.h3`
+  border: 1px solid grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 180px;
+  margin-right: 10px;
+  font-size: 17px;
+  color: #ffffff;
+  border-radius: 10rem;
+  padding: 5px 15px;
+  font-weight: 300;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+
+  ${CardContainer}:hover & {
+    background-color: #8aa51d;
+    color: black;
+    border-color: transparent;
+  }
+`;
+
+const ProjectName = styled.p`
+  margin: 0 10px 10px;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 300;
+`;
 
 export default Portfolio;
