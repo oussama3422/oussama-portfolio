@@ -115,26 +115,27 @@ import { useEffect, useRef } from "react";
 const MouseFollower = ({ isHovering }) => {
   const followerRef = useRef(null); // Reference to the follower element
   const requestRef = useRef(null); // Reference for requestAnimationFrame
+  const mousePosition = useRef({ x: 0, y: 0 }); // Store the last known mouse position
 
   useEffect(() => {
     const follower = followerRef.current;
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
 
-      // Efficiently update the position using transform
-      const updatePosition = () => {
-        if (follower) {
-          follower.style.transform = `translate(${
-            x - (isHovering ? 20 : 5)
-          }px, ${y - (isHovering ? 20 : 5)}px)`;
-          follower.style.width = isHovering ? "40px" : "10px";
-          follower.style.height = isHovering ? "40px" : "10px";
-        }
-        requestRef.current = null; // Reset the request reference
-      };
+    const handleMouseMove = (event) => {
+      mousePosition.current = { x: event.clientX, y: event.clientY };
 
       if (!requestRef.current) {
-        requestRef.current = requestAnimationFrame(updatePosition);
+        requestRef.current = requestAnimationFrame(() => {
+          const { x, y } = mousePosition.current;
+
+          if (follower) {
+            follower.style.transform = `translate(${
+              x - (isHovering ? 20 : 5)
+            }px, ${y - (isHovering ? 20 : 5)}px)`;
+            follower.style.width = isHovering ? "40px" : "10px";
+            follower.style.height = isHovering ? "40px" : "10px";
+          }
+          requestRef.current = null; // Reset the request reference
+        });
       }
     };
 
@@ -159,7 +160,7 @@ const MouseFollower = ({ isHovering }) => {
         borderRadius: "50%",
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         transform: "translate(-100px, -100px)", // Start off-screen
-        transition: isHovering ? "none" : "all 0.3s ease", // Smooth transitions when not hovering
+        transition: isHovering ? "none" : "all 0.2s ease", // Smooth transitions when not hovering
       }}
     />
   );
