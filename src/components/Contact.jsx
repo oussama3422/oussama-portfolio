@@ -255,16 +255,16 @@ const Contact = forwardRef((_props, ref) => {
           <Button type="submit">
             {translations[language].buttonSendMessage}
           </Button>
+          <Snackbar
+            message="Email has been sent successfully!"
+            visible={snackbarVisible}
+          />
+          <Snackbar
+            message="Email has been not send , try other time."
+            visible={snackbarVisible2}
+          />
         </Form>
         {/* Snackbar for success message */}
-        <Snackbar
-          message="Email has been sent successfully!"
-          visible={snackbarVisible}
-        />
-        <Snackbar
-          message="Email has been not send , try other time."
-          visible={snackbarVisible2}
-        />
       </ContentWrapper>
     </Section>
   );
