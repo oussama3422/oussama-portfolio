@@ -115,24 +115,27 @@ import { motion } from "framer-motion";
 
 const MouseFollower = ({ isHovering }) => {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const [animationFrameRequested, setAnimationFrameRequested] = useState(false);
 
   useEffect(() => {
-    let animationFrameId;
-
     const handleMouseMove = (event) => {
-      const updatePosition = () => {
-        setMousePosition({ x: event.clientX, y: event.clientY });
-      };
-      animationFrameId = requestAnimationFrame(updatePosition);
+      if (!animationFrameRequested) {
+        setAnimationFrameRequested(true);
+
+        // Request animation frame for smoother updates
+        requestAnimationFrame(() => {
+          setMousePosition({ x: event.clientX, y: event.clientY });
+          setAnimationFrameRequested(false);
+        });
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [animationFrameRequested]);
 
   const handleFollowerClick = () => {
     window.location.href = "https://www.example.com"; // Replace with your target URL
@@ -150,17 +153,18 @@ const MouseFollower = ({ isHovering }) => {
         borderRadius: "50%",
         backgroundColor: "rgba(255, 255, 255, 0.7)",
         pointerEvents: "auto",
-        transform: `translate(${mousePosition.x - (isHovering ? 10 : 5)}px, ${
-          mousePosition.y + (isHovering ? 10 : 10)
+        transform: `translate(${mousePosition.x - (isHovering ? 20 : 5)}px, ${
+          mousePosition.y - (isHovering ? 20 : 5)
         }px)`,
+        zIndex: 1000,
       }}
       initial={{
         x: mousePosition.x,
         y: mousePosition.y,
       }}
       animate={{
-        x: mousePosition.x - (isHovering ? 10 : 5),
-        y: mousePosition.y + (isHovering ? 10 : 10),
+        x: mousePosition.x - (isHovering ? 20 : 5),
+        y: mousePosition.y - (isHovering ? 20 : 5),
       }}
       transition={{
         type: "spring",
