@@ -347,6 +347,7 @@ const Input = styled.input`
   border: none;
   border-radius: 5px;
   border: 1px solid white;
+  color:white;
   background-color: transparent;
 `;
 
