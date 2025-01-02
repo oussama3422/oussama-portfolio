@@ -347,7 +347,7 @@ const Input = styled.input`
   border: none;
   border-radius: 5px;
   border: 1px solid white;
-  color:white;
+  color: white;
   background-color: transparent;
 `;
 
@@ -360,6 +360,7 @@ const Textarea = styled.textarea`
   border: 1px solid white;
   border-radius: 5px;
   background-color: transparent;
+  color: white;
 `;
 
 const Button = styled.button`
