@@ -119,7 +119,7 @@ function Portfolio() {
           categories={project.categories}
         />
       ))}
-      <OptimizedMouseFollower isHovering={false} />
+      {/* <OptimizedMouseFollower isHovering={false} /> */}
     </ProjectContainer>
   );
 }
