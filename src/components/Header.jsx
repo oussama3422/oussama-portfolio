@@ -1,7 +1,7 @@
 import styled from "styled-components";  
 import SocialMediaLinks from "../ui/SocialMediaIcons";  
 import { Description } from "../ui/Globals";  
-import Profile from "../assets/images/profile.jpg";  
+import Profile from "../assets/images/profile1.jpg";  
 import { motion } from "framer-motion";  
 import LanguageSwitcher from "./LanguageSwitcher";  
 import { ButtonCard } from "../ui/ButtonCard";  
