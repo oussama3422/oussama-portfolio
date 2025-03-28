@@ -133,20 +133,21 @@ const ProjectContainer = styled.div`
   margin: 0 auto;
 `;
 
-function ProjectCard({ projectName, projectImage, categories }) {
+// Memoized ProjectCard Component to avoid re-renders
+const ProjectCard = React.memo(({ projectName, projectImage, categories }) => {
   return (
     <CardContainer>
       <Link
         to={`/project/${encodeURIComponent(projectName)}`}
         style={{ textDecoration: "none" }}
       >
-        <ProjectImage src={projectImage} alt={projectName} loading="lazy" />
+        <ProjectImage src={projectImage} alt={projectName} />
         <TechName>{categories}</TechName>
         <ProjectName>{projectName}</ProjectName>
       </Link>
     </CardContainer>
   );
-}
+});
 
 const CardContainer = styled.div`
   flex: 1 0 45%;
@@ -161,16 +162,17 @@ const CardContainer = styled.div`
   }
 `;
 
-const ProjectImage = styled.img`
-  width: 90%;
-  height: 300px;
-  object-fit: cover;
-  transition: opacity 0.3s ease;
-
-  ${CardContainer}:hover & {
-    opacity: 0.7;
-  }
-`;
+// Lazy Loaded Image Component for Performance
+const ProjectImage = ({ src, alt }) => (
+  <LazyLoadImage
+    src={src}
+    alt={alt}
+    effect="blur"
+    width="90%"
+    height="300px"
+    style={{ objectFit: "cover", transition: "opacity 0.3s ease" }}
+  />
+);
 
 const TechName = styled.h3`
   border: 1px solid grey;

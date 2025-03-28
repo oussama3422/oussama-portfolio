@@ -1,14 +1,22 @@
-import bookWelt from "../images/book_welt.png";
-import bookWelt1 from "../images/book_welt2.png";
-import bookWelt2 from "../images/bookWelt.png";
-import bookWelt3 from "../images/3.png";
-import bookWelt4 from "../images/4.png";
-import pizza1 from "../images/5.png";
-import pizza2 from "../images/6.png";
-import RepairCar from "../images/repair-car.png";
-import Repair1 from "../images/repair1.png";
-import Repair2 from "../images/repair2.png";
-import creaskale from "../images/creaskale.png";
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+// Import images using require() to prevent missing paths
+const bookWelt = require("../images/book_welt.png");
+const bookWelt1 = require("../images/book_welt2.png");
+const bookWelt2 = require("../images/bookWelt.png");
+const bookWelt3 = require("../images/3.png");
+const bookWelt4 = require("../images/4.png");
+const pizza1 = require("../images/5.png");
+const pizza2 = require("../images/6.png");
+const RepairCar = require("../images/repair-car.png");
+const Repair1 = require("../images/repair1.png");
+const Repair2 = require("../images/repair2.png");
+const creaskale = require("../images/creaskale.png");
+
+// Project data
 export const projects = [
   {
     name: "GetDPizza",
@@ -33,9 +41,9 @@ export const projects = [
     categories: "Full Stack Development",
     githubLink: "https://github.com/oussama3422/Book-welt",
     description:
-      "Book Welt is an admin dashboard designed for efficient management of booking data and statistical analysis through clean and intuitive charts. Built using React, React Query, Toasts, Recharts, and Styled Components, this dashboard provides a seamless experience for employees to monitor various stats and handle bookings effortlessly.",
+      "Book Welt is an admin dashboard designed for efficient management of booking data and statistical analysis through clean and intuitive charts.",
     websiteLink: "https://bookwelt.vercel.app/",
-    toolsAndTechnologies: ["HTML", "CSS", "JAVASCRIPT"],
+    toolsAndTechnologies: ["React", "Styled Components", "Recharts"],
     image: bookWelt,
     images: [bookWelt1, bookWelt2, bookWelt3, bookWelt4],
   },
@@ -45,13 +53,7 @@ export const projects = [
     githubLink: null,
     description: "Creaskale is an innovative mobile solution.",
     websiteLink: null,
-    toolsAndTechnologies: [
-      "FLUTTER",
-      "DART",
-      "BLOC",
-      "FIREBASE",
-      "STATE MANAGEMENT",
-    ],
+    toolsAndTechnologies: ["Flutter", "Dart", "Bloc", "Firebase"],
     image: creaskale,
     images: [],
   },
@@ -59,15 +61,10 @@ export const projects = [
     name: "RepairCar",
     categories: "Mobile Development (Front End)",
     githubLink: "",
-    description: "RepairCar is an app currently under development, with the front-end mobile version successfully completed.",
+    description:
+      "RepairCar is an app currently under development, with the front-end mobile version successfully completed.",
     websiteLink: "Coming soon",
-    toolsAndTechnologies: [
-      "FLUTTER",
-      "DART",
-      "BLOC",
-      "FIREBASE",
-      "STATE MANAGEMENT",
-    ],
+    toolsAndTechnologies: ["Flutter", "Dart", "Bloc", "Firebase"],
     image: RepairCar,
     images: [Repair1, Repair2],
   },
