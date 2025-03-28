@@ -119,11 +119,9 @@ function Portfolio() {
           categories={project.categories}
         />
       ))}
-      {/* <OptimizedMouseFollower isHovering={false} /> */}
     </ProjectContainer>
   );
 }
-
 const ProjectContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
