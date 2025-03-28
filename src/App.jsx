@@ -1,63 +1,62 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Portfolio from "./components/Portfolio";
-import Header from "./components/Header"; // Add your header component
-import Footer from "./components/Footer"; // Add your footer component
-import AppLayout from "./components/AppLayout"; // Optional layout wrapper
-import ProjectDetail from "./components/ProjectDetail";
-import Services from "./components/Services";
-import PortfolioTitle from "./ui/PortfolioTitle";
-import ContactButton from "./ui/ContactButton";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
+import { LanguageProvider } from "./context/LanguageContext";
 import Loading from "./components/Loading";
 import OptimizedMouseFollower from "./ui/MouseMotion";
-import ContactSection from "./components/Contact";
-import { LanguageProvider } from "./context/LanguageContext";
-// import GlobalStyle from "./assets/GlobalStyle";
-const App = () => {
-  const contactRef = useRef(null); // Create a ref for the Contact section
-  const [loading, setLoading] = useState(true); // State to manage loading
-  const [color, setColor] = useState("#ffffff"); // Default loader color
-  const location = useLocation(); // Get the current location
+import ContactButton from "./ui/ContactButton";
+import AppLayout from "./components/AppLayout";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
-  // Simulate loading duration
+const Portfolio = lazy(() => import("./components/Portfolio"));
+const ProjectDetail = lazy(() => import("./components/ProjectDetail"));
+const Services = lazy(() => import("./components/Services"));
+const ContactSection = lazy(() => import("./components/Contact"));
+const PortfolioTitle = lazy(() => import("./ui/PortfolioTitle"));
+
+const App = () => {
+  const contactRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false); // Simulate loading finished after 3 seconds
-    }, 3000);
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
-    return <Loading color={color} loading={loading} />; // Render the loading component while loading
-  }
+  if (loading) return <Loading />;
 
   return (
     <LanguageProvider>
       <AppLayout>
         <OptimizedMouseFollower />
+        <Header />
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <Header />
-                <Services />
-                <PortfolioTitle />
-                <Portfolio />
-                <ContactSection ref={contactRef} />
+                <Suspense fallback={<Loading />}>
+                  <Services />
+                  <PortfolioTitle />
+                  <Portfolio />
+                  <ContactSection ref={contactRef} />
+                </Suspense>
               </>
             }
           />
-          <Route path="/project/:name" element={<ProjectDetail />} />
-        </Routes>
-        {location.pathname === "/" && (
-          <ContactButton
-            onClick={() =>
-              contactRef.current.scrollIntoView({ behavior: "smooth" })
+          <Route
+            path="/project/:name"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ProjectDetail />
+              </Suspense>
             }
           />
+        </Routes>
+        {location.pathname === "/" && (
+          <ContactButton onClick={() => contactRef.current.scrollIntoView({ behavior: "smooth" })} />
         )}
-
         <Footer />
       </AppLayout>
     </LanguageProvider>
